@@ -7,10 +7,12 @@ import {
   RouterProvider,
   Route,
   Link,
+  BrowserRouter,
 } from "react-router-dom";
 
 import CheckoutPage from "./pages/CheckoutPage";
-import ProductDeatilPage from "./pages/ProductDetailPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -34,8 +36,12 @@ const router = createBrowserRouter([
     element: <CheckoutPage></CheckoutPage>,
   },
   {
-    path: "/Product-detail",
-    element: <ProductDeatilPage></ProductDeatilPage>,
+    path: "/Product-detail/:id",
+    element: <ProductDetailPage></ProductDetailPage>,
+  },
+  {
+    path: "/*",
+    element: <NotFoundPage></NotFoundPage>,
   },
 ]);
 

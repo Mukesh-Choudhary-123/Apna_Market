@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { increment, incrementAsync, selectCount } from "../cart/CartSlice";
 import { Dialog, Transition } from "@headlessui/react";
@@ -55,6 +55,10 @@ const addresses = [
 function Checkout() {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
