@@ -1,23 +1,45 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import logo from "./logo.png";
+import { selectLoggedInUser, createUserAsync } from "../AuthSlice";
+import { useSelector, useDispatch } from "react-redux";
 
-function Signup() {
+export default function Signup() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const er = errors;
+  const dispatch = useDispatch();
+  const user = useSelector(selectLoggedInUser);
   return (
     <>
       <div>
+        {user && <Navigate to="/" replace={true}></Navigate>}
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img
-              className="mx-auto h-10 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Your Company"
-            />
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <img className="mx-auto h-10 w-auto" src={logo} alt="Apna Market" />
+            <p className="text-center  text-gray-900 font-bold">Apna Market</p>
+            <h6 className="mt-10 text-center text-2xl leading-9 tracking-tight text-gray-900">
               Create a New Account
-            </h2>
+            </h6>
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
+            <form
+              noValidate
+              className="space-y-6"
+              onSubmit={handleSubmit((onSubmit) => {
+                console.log(onSubmit);
+                dispatch(
+                  createUserAsync({
+                    email: onSubmit.email,
+                    password: onSubmit.password,
+                  })
+                );
+              })}
+            >
               <div>
                 <label
                   htmlFor="email"
@@ -28,12 +50,19 @@ function Signup() {
                 <div className="mt-2">
                   <input
                     id="email"
-                    name="email"
+                    {...register("email", {
+                      required: "email is required",
+                      pattern: {
+                        value: /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi,
+                        message: "email not valid",
+                      },
+                    })}
                     type="email"
-                    autoComplete="email"
-                    required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[rgba(223,27,51,255)] sm:text-sm sm:leading-6"
                   />
+                  {errors.email && (
+                    <p className="text-red-500 ">{errors.email.message}</p>
+                  )}
                 </div>
               </div>
 
@@ -49,12 +78,22 @@ function Signup() {
                 <div className="mt-2">
                   <input
                     id="password"
-                    name="password"
+                    {...register("password", {
+                      required: "password is required",
+                      pattern: {
+                        value:
+                          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+                        message: `- at least 8 characters 
+                         - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
+                         - Can contain special characters`,
+                      },
+                    })}
                     type="password"
-                    autoComplete="current-password"
-                    required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[rgba(223,27,51,255)] sm:text-sm sm:leading-6"
                   />
+                  {errors.password && (
+                    <p className="text-red-500 ">{errors.password.message}</p>
+                  )}
                 </div>
               </div>
 
@@ -69,19 +108,28 @@ function Signup() {
                 </div>
                 <div className="mt-2">
                   <input
-                    id="confirm-password"
-                    name="confirm-password"
+                    id="confirmPassword"
+                    {...register("confirmPassword", {
+                      required: "confirm Password is required",
+                      validate: (value, formValues) =>
+                        value === formValues.password || "password is matching",
+                    })}
                     type="password"
                     required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[rgba(223,27,51,255)] sm:text-sm sm:leading-6"
                   />
+                  {errors.confirmPassword && (
+                    <p className="text-red-500 ">
+                      {errors.confirmPassword.message}
+                    </p>
+                  )}
                 </div>
               </div>
 
               <div>
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="flex w-full justify-center rounded-md bg-[rgba(223,27,51,255)] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#ef4444] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(223,27,51,255)]"
                 >
                   Sign Up
                 </button>
@@ -92,7 +140,7 @@ function Signup() {
               Already a member?{" "}
               <Link
                 to="/login"
-                className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+                className="font-semibold leading-6 text-[rgba(223,27,51,255)] hover:text-[#ef4444]"
               >
                 Log in
               </Link>
@@ -103,5 +151,3 @@ function Signup() {
     </>
   );
 }
-
-export default Signup;

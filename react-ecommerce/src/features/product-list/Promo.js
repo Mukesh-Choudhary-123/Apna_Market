@@ -84,7 +84,7 @@ function Promo() {
 
                 <a
                   href="#"
-                  className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700"
+                  className="inline-block rounded-md border border-transparent bg-[rgba(223,27,51,255)] px-8 py-3 text-center font-medium text-white  hover:bg-[#ef4444]"
                 >
                   Shop Collection
                 </a>

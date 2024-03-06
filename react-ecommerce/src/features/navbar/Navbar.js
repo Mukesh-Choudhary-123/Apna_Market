@@ -8,6 +8,8 @@ import {
   ShoppingCartIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { useSelector } from "react-redux";
+import { selectItem } from "../cart/CartSlice";
 
 const user = {
   name: "Tom Cook",
@@ -17,15 +19,15 @@ const user = {
 };
 const navigation = [
   { name: "Home", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
+  { name: "Cart", href: "/cart", current: false },
   { name: "Projects", href: "#", current: false },
   { name: "Calendar", href: "#", current: false },
   { name: "Reports", href: "#", current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: "Your Profile", href: "/profile" },
+  { name: "Settings", href: "/" },
+  { name: "Sign out", href: "/login" },
 ];
 
 function classNames(...classes) {
@@ -33,11 +35,14 @@ function classNames(...classes) {
 }
 
 const Navbar = ({ children }) => {
+  const items = useSelector(selectItem);
+  // console.log(items.length);
   return (
     <div>
       {" "}
       <div className="min-h-full">
-        <Disclosure as="nav" className="bg-gray-800">
+        {/* gray-800 */}
+        <Disclosure as="nav" className="bg-[rgba(223,27,51,255)]">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -45,14 +50,16 @@ const Navbar = ({ children }) => {
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                       <Link to="/">
-                        <img
-                          className="h-9 w-10"
-                          src={logo}
-                          alt="Apna Market logo"
-                        />
+                        <div className="h-10 w-10 bg-white rounded-full text-align: center;">
+                          <img
+                            className="h-10 w-10 "
+                            src={logo}
+                            alt="Apna Market logo"
+                          />
+                        </div>
                       </Link>
                     </div>
-                    <div className="mx-auto max-w-7xl px-3 py-5 sm:px-3 lg:px-4">
+                    <div className="mx-auto max-w-7xl px-2 py-5 sm:px-3 lg:px-4">
                       <h1 className="text-3xl font-bold tracking-tight text-zinc-50">
                         Apna Market
                       </h1>
@@ -65,10 +72,11 @@ const Navbar = ({ children }) => {
                             href={item.href}
                             className={classNames(
                               item.current
-                                ? "bg-gray-900 text-white"
-                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                                ? "bg-red-50 text-red-700  ring-1 ring-inset ring-red-600/10"
+                                : "text-gray-300 hover:text-white",
                               "rounded-md px-3 py-2 text-sm font-medium"
                             )}
+                            // { bg-red-50 px-2 py-1  text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10}
                             aria-current={item.current ? "page" : undefined}
                           >
                             {item.name}
@@ -82,7 +90,7 @@ const Navbar = ({ children }) => {
                       <Link to="/cart">
                         <button
                           type="button"
-                          className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                          className="relative rounded-full bg-[rgba(223,27,51,255)] p-1  text-white hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                         >
                           <span className="absolute -inset-1.5" />
                           <span className="sr-only">View notifications</span>
@@ -92,9 +100,12 @@ const Navbar = ({ children }) => {
                           />
                         </button>
                       </Link>
-                      <span className="inline-flex items-center rounded-md mb-5 bg-red-50 px-2 py-1  text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-                        6
-                      </span>
+
+                      {items.length > 0 && (
+                        <span className="inline-flex items-center rounded-md mb-5 bg-red-50 px-2 py-1  text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                          {items.length}
+                        </span>
+                      )}
 
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
@@ -122,15 +133,15 @@ const Navbar = ({ children }) => {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
-                                    href={item.href}
+                                  <Link
+                                    to={item.link}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
                                     )}
                                   >
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 )}
                               </Menu.Item>
                             ))}
@@ -199,7 +210,7 @@ const Navbar = ({ children }) => {
                     <Link to="/cart">
                       <button
                         type="button"
-                        className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        className="relative ml-auto flex-shrink-0 rounded-full bg-[#bd2e52] p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">View notifications</span>
@@ -209,9 +220,11 @@ const Navbar = ({ children }) => {
                         />
                       </button>
                     </Link>
-                    <span className="inline-flex items-center rounded-md mb-5 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-                      2
-                    </span>
+                    {items.length > 0 && (
+                      <span className="inline-flex items-center rounded-md mb-5 bg-red-50 px-2 py-1  text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                        {items.length}
+                      </span>
+                    )}
                   </div>
                   <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (

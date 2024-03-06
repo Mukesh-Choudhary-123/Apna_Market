@@ -4,6 +4,9 @@ import { RadioGroup } from "@headlessui/react";
 import { fetchProductByIdAsync, selectProductById } from "../ProductSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { Await, useNavigate, useParams } from "react-router-dom";
+import { addToCart } from "../../cart/CartAPI";
+import { addToCartAsync } from "../../cart/CartSlice";
+import { selectLoggedInUser } from "../../auth/AuthSlice";
 
 const sizes = [
   { name: "XXS", inStock: false },
@@ -15,7 +18,6 @@ const sizes = [
   { name: "2XL", inStock: true },
   { name: "3XL", inStock: true },
 ];
-
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
   { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
@@ -37,10 +39,17 @@ export default function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   const product = useSelector(selectProductById);
-  console.log(product);
+  const user = useSelector(selectLoggedInUser);
 
   const dispatch = useDispatch();
   const param = useParams();
+
+  const handleCart = (e) => {
+    e.preventDefault();
+    const newItem = { ...product, quantity: 1, user: user.id };
+    delete newItem["id"];
+    dispatch(addToCartAsync(newItem));
+  };
 
   useEffect(() => {
     dispatch(fetchProductByIdAsync(param.id));
@@ -214,7 +223,7 @@ export default function ProductDetail() {
                     <h3 className="text-sm font-medium text-gray-900">Size</h3>
                     <a
                       href="#"
-                      className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                      className="text-sm font-medium text-[rgba(223,27,51,255)] hover:text-[#ef4444]"
                     >
                       Size guide
                     </a>
@@ -254,7 +263,7 @@ export default function ProductDetail() {
                                   className={classNames(
                                     active ? "border" : "border-2",
                                     checked
-                                      ? "border-indigo-500"
+                                      ? "border-[rgba(223,27,51,255)]"
                                       : "border-transparent",
                                     "pointer-events-none absolute -inset-px rounded-md"
                                   )}
@@ -290,8 +299,9 @@ export default function ProductDetail() {
                 </div>
 
                 <button
+                  onClick={handleCart}
                   type="submit"
-                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[rgba(223,27,51,255)]  px-8 py-3 text-base font-medium text-white hover:bg-[#ef4444] focus:outline-none focus:ring-2 focus:ring-[rgba(223,27,51,255)] focus:ring-offset-2"
                 >
                   Add to Cart
                 </button>
