@@ -2436,37 +2436,129 @@
     {
       "id": "1",
       "email": "dotos63418@backva.com",
-      "password": "Qwert123"
-    },
-    {
-      "id": "40c9",
-      "email": "mukeshchoudhary1062003@gmail.com",
-      "password": "Qwert123"
+      "password": "Qwert123",
+      "addresses": [
+        {
+          "name": "Mukesh Choudhary",
+          "email": "mylaptop617443@gmail.com",
+          "phone": "92215902882",
+          "street": "S.S College of Engineering ",
+          "city": "UDAIPUR",
+          "state": "Rajasthan",
+          "pinCode": "320034"
+        }
+      ]
     }
   ],
-  "cart": [
+  "cart": [],
+  "orders": [
     {
-      "0": {
-        "id": "2",
-        "title": "iPhone X",
-        "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-        "price": 899,
-        "discountPercentage": 17.94,
-        "rating": 4.44,
-        "stock": 34,
-        "brand": "Apple",
-        "category": "smartphones",
-        "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
-        "images": [
-          "https://cdn.dummyjson.com/product-images/2/1.jpg",
-          "https://cdn.dummyjson.com/product-images/2/2.jpg",
-          "https://cdn.dummyjson.com/product-images/2/3.jpg",
-          "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+      "id": "f253",
+      "items": [
+        {
+          "0": {
+            "id": "18",
+            "title": "Oil Free Moisturizer 100ml",
+            "description": "Dermive Oil Free Moisturizer with SPF 20 is specifically formulated with ceramides, hyaluronic acid & sunscreen.",
+            "price": 40,
+            "discountPercentage": 13.1,
+            "rating": 4.56,
+            "stock": 88,
+            "brand": "Dermive",
+            "category": "skincare",
+            "thumbnail": "https://cdn.dummyjson.com/product-images/18/thumbnail.jpg",
+            "images": [
+              "https://cdn.dummyjson.com/product-images/18/1.jpg",
+              "https://cdn.dummyjson.com/product-images/18/2.jpg",
+              "https://cdn.dummyjson.com/product-images/18/3.jpg",
+              "https://cdn.dummyjson.com/product-images/18/4.jpg",
+              "https://cdn.dummyjson.com/product-images/18/thumbnail.jpg"
+            ]
+          },
+          "id": "dd4d",
+          "quantity": 1,
+          "user": "1"
+        }
+      ],
+      "totalAmount": null,
+      "totalItem": 1,
+      "user": {
+        "id": "1",
+        "email": "dotos63418@backva.com",
+        "password": "Qwert123",
+        "addresses": [
+          {
+            "name": "Mukesh Choudhary",
+            "email": "mylaptop617443@gmail.com",
+            "phone": "92215902882",
+            "street": "S.S College of Engineering ",
+            "city": "UDAIPUR",
+            "state": "Rajasthan",
+            "pinCode": "320034"
+          }
         ]
       },
-      "id": "5903",
-      "quantity": 1,
-      "user": "1"
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Mukesh Choudhary",
+        "email": "mylaptop617443@gmail.com",
+        "phone": "92215902882",
+        "street": "S.S College of Engineering ",
+        "city": "UDAIPUR",
+        "state": "Rajasthan",
+        "pinCode": "320034"
+      },
+      "state": "pending"
+    },
+    {
+      "id": "6c31",
+      "items": [
+        {
+          "0": {
+            "id": "18",
+            "title": "Oil Free Moisturizer 100ml",
+            "description": "Dermive Oil Free Moisturizer with SPF 20 is specifically formulated with ceramides, hyaluronic acid & sunscreen.",
+            "price": 40,
+            "discountPercentage": 13.1,
+            "rating": 4.56,
+            "stock": 88,
+            "brand": "Dermive",
+            "category": "skincare",
+            "thumbnail": "https://cdn.dummyjson.com/product-images/18/thumbnail.jpg",
+            "images": [
+              "https://cdn.dummyjson.com/product-images/18/1.jpg",
+              "https://cdn.dummyjson.com/product-images/18/2.jpg",
+              "https://cdn.dummyjson.com/product-images/18/3.jpg",
+              "https://cdn.dummyjson.com/product-images/18/4.jpg",
+              "https://cdn.dummyjson.com/product-images/18/thumbnail.jpg"
+            ]
+          },
+          "id": "dd4d",
+          "quantity": 1,
+          "user": "1"
+        }
+      ],
+      "totalAmount": null,
+      "totalItem": 1,
+      "user": {
+        "id": "1",
+        "email": "dotos63418@backva.com",
+        "password": "Qwert123",
+        "addresses": [
+          {
+            "name": "Mukesh Choudhary",
+            "email": "mylaptop617443@gmail.com",
+            "phone": "92215902882",
+            "street": "S.S College of Engineering ",
+            "city": "UDAIPUR",
+            "state": "Rajasthan",
+            "pinCode": "320034"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": null,
+      "state": "pending"
     }
   ]
 }

@@ -36,6 +36,7 @@ export default function Signup() {
                   createUserAsync({
                     email: onSubmit.email,
                     password: onSubmit.password,
+                    addresses: [],
                   })
                 );
               })}

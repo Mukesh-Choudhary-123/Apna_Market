@@ -1,5 +1,4 @@
 export function addToCart(item) {
-  // console.log(item);
   return new Promise(async (resolve) => {
     const response = await fetch("http://localhost:8080/cart", {
       method: "POST",
@@ -22,7 +21,6 @@ export function fetchItemByUserId(userId) {
 }
 
 export function updateCart(update) {
-  // console.log(item);
   return new Promise(async (resolve) => {
     const response = await fetch("http://localhost:8080/cart/" + update.id, {
       method: "PATCH",
@@ -35,7 +33,6 @@ export function updateCart(update) {
 }
 
 export function deleteItemFromCart(itemId) {
-  // console.log(item);
   return new Promise(async (resolve) => {
     const response = await fetch("http://localhost:8080/cart/" + itemId, {
       method: "DELETE",
@@ -44,5 +41,16 @@ export function deleteItemFromCart(itemId) {
     });
     const data = await response.json();
     resolve({ data: { id: itemId } });
+  });
+}
+
+export function resetCart(userId) {
+  return new Promise(async (resolve) => {
+    const response = await fetchItemByUserId(userId);
+    const items = response.data;
+    for (let item of items) {
+      await deleteItemFromCart(item.id);
+    }
+    resolve({ status: "success" });
   });
 }

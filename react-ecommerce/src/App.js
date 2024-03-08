@@ -14,6 +14,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Protected from "./features/auth/components/Protected";
+import OrderSuccessPage from "./pages/OrderSuccessPage";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLoggedInUser } from "./features/auth/AuthSlice";
@@ -53,11 +54,19 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/Product-detail/:id",
+    path: "/product-detail/:id",
     element: (
       <Protected>
         <ProductDetailPage></ProductDetailPage>
       </Protected>
+    ),
+  },
+  {
+    path: "/order-success/:id",
+    element: (
+      // <Protected>
+      <OrderSuccessPage></OrderSuccessPage>
+      //</Protected>
     ),
   },
   {
