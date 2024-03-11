@@ -95,7 +95,7 @@ export default function Cart() {
                           <button
                             onClick={(e) => handleRemove(e, item.id)}
                             type="button"
-                            className="font-medium text-indigo-600 hover:text-indigo-500"
+                            className="font-medium text-[rgba(223,27,51,255)] hover:text-[#ef4444]"
                           >
                             Remove
                           </button>

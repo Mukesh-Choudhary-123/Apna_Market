@@ -19,6 +19,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLoggedInUser } from "./features/auth/AuthSlice";
 import { fetchItemByUserIdAsync } from "./features/cart/CartSlice";
+import { UserOrderPage } from "./pages/UserOrderPage";
+import { UserProfilePage } from "./pages/UserProfilePage";
+import { fetchLoggedInUserAsync } from "./features/user/UserSlice";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +73,22 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/orders",
+    element: (
+      // <Protected>
+      <UserOrderPage></UserOrderPage>
+      //</Protected>
+    ),
+  },
+  {
+    path: "/profile",
+    element: (
+      // <Protected>
+      <UserProfilePage></UserProfilePage>
+      //</Protected>
+    ),
+  },
+  {
     path: "/*",
     element: <NotFoundPage></NotFoundPage>,
   },
@@ -78,13 +97,13 @@ const router = createBrowserRouter([
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
-  console.log("I am here again 1");
   console.log(user);
 
   useEffect(() => {
     if (user) {
       console.log("I am here again 2");
       dispatch(fetchItemByUserIdAsync(user.id));
+      dispatch(fetchLoggedInUserAsync(user.id));
     }
   }, [dispatch, user]);
 

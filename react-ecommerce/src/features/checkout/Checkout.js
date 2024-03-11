@@ -8,8 +8,9 @@ import {
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { selectLoggedInUser, updateUserAsync } from "../auth/AuthSlice";
+import { updateUserAsync } from "../auth/AuthSlice";
 import { createOrderAsync, selectCurrentOrder } from "../order/OrderSlice";
+import { selectUserInfo } from "../user/UserSlice";
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function Checkout() {
     formState: { errors },
   } = useForm();
 
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
   const currentOrder = useSelector(selectCurrentOrder);
   const items = useSelector(selectItem);
   const item = items;
