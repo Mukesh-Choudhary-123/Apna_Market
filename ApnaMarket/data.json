@@ -2439,13 +2439,31 @@
       "password": "Qwert123",
       "addresses": [
         {
-          "name": "Mukesh Choudhary",
+          "name": "Mukesh Choudhary ",
           "email": "mylaptop617443@gmail.com",
           "phone": "92215902882",
-          "street": "S.S College of Engineering",
+          "street": "S.S College of Engineering wefwefwef",
+          "city": "UDAIPUR",
+          "state": "Rajasthan",
+          "pinCode": "0000000000"
+        },
+        {
+          "name": "Pinky Edited Address",
+          "email": "mylaptop617443@gmail.com",
+          "phone": "92215902882",
+          "street": "S.S College of Engineering wefwefwef",
           "city": "UDAIPUR",
           "state": "Rajasthan",
           "pinCode": "320034"
+        },
+        {
+          "name": "Lalit Kumar",
+          "email": "Lalitkumar123@gmail.com",
+          "phone": "9876543210",
+          "street": "Dhani village Luvaro ki gali house no.3",
+          "city": "Dhani",
+          "state": "Rajasthan",
+          "pinCode": "8635263"
         }
       ]
     }
@@ -2453,26 +2471,49 @@
   "cart": [
     {
       "0": {
-        "id": "1",
-        "title": "iPhone 9",
-        "description": "An apple mobile which is nothing like apple",
-        "price": 549,
-        "discountPercentage": 12.96,
-        "rating": 4.69,
-        "stock": 94,
-        "brand": "Apple",
+        "id": "4",
+        "title": "OPPOF19",
+        "description": "OPPO F19 is officially announced on April 2021.",
+        "price": 280,
+        "discountPercentage": 17.91,
+        "rating": 4.3,
+        "stock": 123,
+        "brand": "OPPO",
         "category": "smartphones",
-        "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
+        "thumbnail": "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
         "images": [
-          "https://cdn.dummyjson.com/product-images/1/1.jpg",
-          "https://cdn.dummyjson.com/product-images/1/2.jpg",
-          "https://cdn.dummyjson.com/product-images/1/3.jpg",
-          "https://cdn.dummyjson.com/product-images/1/4.jpg",
-          "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
+          "https://cdn.dummyjson.com/product-images/4/1.jpg",
+          "https://cdn.dummyjson.com/product-images/4/2.jpg",
+          "https://cdn.dummyjson.com/product-images/4/3.jpg",
+          "https://cdn.dummyjson.com/product-images/4/4.jpg",
+          "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"
         ]
       },
-      "id": "ef84",
-      "quantity": 3,
+      "id": "e514",
+      "quantity": 1,
+      "user": "1"
+    },
+    {
+      "0": {
+        "id": "2",
+        "title": "iPhone X",
+        "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+        "price": 899,
+        "discountPercentage": 17.94,
+        "rating": 4.44,
+        "stock": 34,
+        "brand": "Apple",
+        "category": "smartphones",
+        "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+        "images": [
+          "https://cdn.dummyjson.com/product-images/2/1.jpg",
+          "https://cdn.dummyjson.com/product-images/2/2.jpg",
+          "https://cdn.dummyjson.com/product-images/2/3.jpg",
+          "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+        ]
+      },
+      "id": "9a47",
+      "quantity": 1,
       "user": "1"
     }
   ],
@@ -2953,6 +2994,228 @@
       ],
       "totalAmount": null,
       "totalItem": 1,
+      "user": {
+        "id": "1",
+        "email": "dotos63418@backva.com",
+        "password": "Qwert123",
+        "addresses": [
+          {
+            "name": "Mukesh Choudhary",
+            "email": "mylaptop617443@gmail.com",
+            "phone": "92215902882",
+            "street": "S.S College of Engineering",
+            "city": "UDAIPUR",
+            "state": "Rajasthan",
+            "pinCode": "320034"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Mukesh Choudhary",
+        "email": "mylaptop617443@gmail.com",
+        "phone": "92215902882",
+        "street": "S.S College of Engineering",
+        "city": "UDAIPUR",
+        "state": "Rajasthan",
+        "pinCode": "320034"
+      },
+      "state": "pending"
+    },
+    {
+      "id": "d6d9",
+      "items": [
+        {
+          "0": {
+            "id": "1",
+            "title": "iPhone 9",
+            "description": "An apple mobile which is nothing like apple",
+            "price": 549,
+            "discountPercentage": 12.96,
+            "rating": 4.69,
+            "stock": 94,
+            "brand": "Apple",
+            "category": "smartphones",
+            "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
+            "images": [
+              "https://cdn.dummyjson.com/product-images/1/1.jpg",
+              "https://cdn.dummyjson.com/product-images/1/2.jpg",
+              "https://cdn.dummyjson.com/product-images/1/3.jpg",
+              "https://cdn.dummyjson.com/product-images/1/4.jpg",
+              "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
+            ]
+          },
+          "id": "ef84",
+          "quantity": 2,
+          "user": "1"
+        }
+      ],
+      "totalAmount": null,
+      "totalItem": 2,
+      "user": {
+        "id": "1",
+        "email": "dotos63418@backva.com",
+        "password": "Qwert123",
+        "addresses": [
+          {
+            "name": "Mukesh Choudhary",
+            "email": "mylaptop617443@gmail.com",
+            "phone": "92215902882",
+            "street": "S.S College of Engineering",
+            "city": "UDAIPUR",
+            "state": "Rajasthan",
+            "pinCode": "320034"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": null,
+      "state": "pending"
+    },
+    {
+      "id": "9ed7",
+      "items": [
+        {
+          "0": {
+            "id": "2",
+            "title": "iPhone X",
+            "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+            "price": 899,
+            "discountPercentage": 17.94,
+            "rating": 4.44,
+            "stock": 34,
+            "brand": "Apple",
+            "category": "smartphones",
+            "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+            "images": [
+              "https://cdn.dummyjson.com/product-images/2/1.jpg",
+              "https://cdn.dummyjson.com/product-images/2/2.jpg",
+              "https://cdn.dummyjson.com/product-images/2/3.jpg",
+              "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+            ]
+          },
+          "id": "1010",
+          "quantity": 1,
+          "user": "1"
+        }
+      ],
+      "totalAmount": null,
+      "totalItem": 1,
+      "user": {
+        "id": "1",
+        "email": "dotos63418@backva.com",
+        "password": "Qwert123",
+        "addresses": [
+          {
+            "name": "Mukesh Choudhary",
+            "email": "mylaptop617443@gmail.com",
+            "phone": "92215902882",
+            "street": "S.S College of Engineering",
+            "city": "UDAIPUR",
+            "state": "Rajasthan",
+            "pinCode": "320034"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Mukesh Choudhary",
+        "email": "mylaptop617443@gmail.com",
+        "phone": "92215902882",
+        "street": "S.S College of Engineering",
+        "city": "UDAIPUR",
+        "state": "Rajasthan",
+        "pinCode": "320034"
+      },
+      "state": "pending"
+    },
+    {
+      "id": "87fc",
+      "items": [
+        {
+          "0": {
+            "id": "13",
+            "title": "Fog Scent Xpressio Perfume",
+            "description": "Product details of Best Fog Scent Xpressio Perfume 100ml For Men cool long lasting perfumes for Men",
+            "price": 13,
+            "discountPercentage": 8.14,
+            "rating": 4.59,
+            "stock": 61,
+            "brand": "Fog Scent Xpressio",
+            "category": "fragrances",
+            "thumbnail": "https://cdn.dummyjson.com/product-images/13/thumbnail.webp",
+            "images": [
+              "https://cdn.dummyjson.com/product-images/13/1.jpg",
+              "https://cdn.dummyjson.com/product-images/13/2.png",
+              "https://cdn.dummyjson.com/product-images/13/3.jpg",
+              "https://cdn.dummyjson.com/product-images/13/4.jpg",
+              "https://cdn.dummyjson.com/product-images/13/thumbnail.webp"
+            ]
+          },
+          "id": "d15f",
+          "quantity": 1,
+          "user": "1"
+        }
+      ],
+      "totalAmount": null,
+      "totalItem": 1,
+      "user": {
+        "id": "1",
+        "email": "dotos63418@backva.com",
+        "password": "Qwert123",
+        "addresses": [
+          {
+            "name": "Mukesh Choudhary",
+            "email": "mylaptop617443@gmail.com",
+            "phone": "92215902882",
+            "street": "S.S College of Engineering",
+            "city": "UDAIPUR",
+            "state": "Rajasthan",
+            "pinCode": "320034"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Mukesh Choudhary",
+        "email": "mylaptop617443@gmail.com",
+        "phone": "92215902882",
+        "street": "S.S College of Engineering",
+        "city": "UDAIPUR",
+        "state": "Rajasthan",
+        "pinCode": "320034"
+      },
+      "state": "pending"
+    },
+    {
+      "id": "6745",
+      "items": [
+        {
+          "0": {
+            "id": "2",
+            "title": "iPhone X",
+            "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+            "price": 899,
+            "discountPercentage": 17.94,
+            "rating": 4.44,
+            "stock": 34,
+            "brand": "Apple",
+            "category": "smartphones",
+            "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+            "images": [
+              "https://cdn.dummyjson.com/product-images/2/1.jpg",
+              "https://cdn.dummyjson.com/product-images/2/2.jpg",
+              "https://cdn.dummyjson.com/product-images/2/3.jpg",
+              "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+            ]
+          },
+          "id": "8e6a",
+          "quantity": 4,
+          "user": "1"
+        }
+      ],
+      "totalAmount": null,
+      "totalItem": 4,
       "user": {
         "id": "1",
         "email": "dotos63418@backva.com",
