@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 import { selectItem } from "../cart/CartSlice";
+import { selectLoggedInUser } from "../auth/AuthSlice";
 
 const user = {
   name: "Tom Cook",
@@ -18,13 +19,14 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Home", link: "/", current: false },
-  { name: "Cart", link: "/cart", current: false },
+  { name: "Home", link: "/", user: true },
+  { name: "Cart", link: "/cart", user: true },
+  { name: "Admin", link: "/admin", admin: true },
 ];
 const userNavigation = [
   { name: "My Profile", link: "/profile" },
   { name: "My Orders", link: "/orders" },
-  { name: "Sign out", link: "/login" },
+  { name: "Sign out", link: "/logout" },
 ];
 
 function classNames(...classes) {
@@ -33,7 +35,7 @@ function classNames(...classes) {
 
 const Navbar = ({ children }) => {
   const items = useSelector(selectItem);
-  // console.log(items.length);
+  const user = useSelector(selectLoggedInUser);
   return (
     <div>
       {" "}
@@ -63,22 +65,24 @@ const Navbar = ({ children }) => {
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
-                        {navigation.map((item) => (
-                          <Link
-                            key={item.name}
-                            to={item.link}
-                            className={classNames(
-                              item.current
-                                ? "bg-red-50 text-red-700  ring-1 ring-inset ring-red-600/10"
-                                : "text-gray-300 hover:text-white",
-                              "rounded-md px-3 py-2 text-sm font-medium"
-                            )}
-                            // { bg-red-50 px-2 py-1  text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10}
-                            aria-current={item.current ? "page" : undefined}
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
+                        {navigation.map((item) =>
+                          item[user.role] ? (
+                            <Link
+                              key={item.name}
+                              to={item.link}
+                              className={classNames(
+                                item.current
+                                  ? "bg-red-50 text-red-700  ring-1 ring-inset ring-red-600/10"
+                                  : "text-gray-300 hover:text-white",
+                                "rounded-md px-3 py-2 text-sm font-medium"
+                              )}
+                              // { bg-red-50 px-2 py-1  text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10}
+                              aria-current={item.current ? "page" : undefined}
+                            >
+                              {item.name}
+                            </Link>
+                          ) : null
+                        )}
                       </div>
                     </div>
                   </div>

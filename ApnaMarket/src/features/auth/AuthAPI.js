@@ -33,6 +33,12 @@ export function checkUser(loginInfo) {
   });
 }
 
+export function signOut(userId) {
+  return new Promise(async (resolve) => {
+    resolve({ data: "Sign-out Successfully" });
+  });
+}
+
 // export function updateUser(update) {
 //   return new Promise(async (resolve) => {
 //     const response = await fetch("http://localhost:8080/users/" + update.id, {

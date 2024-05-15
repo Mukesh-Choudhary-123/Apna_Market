@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUserInfo, updateUserAsync } from "../UserSlice";
 import { useForm } from "react-hook-form";
+import PersonIcon from "@mui/icons-material/Person";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ export default function UserProfile() {
     <div>
       <div className="mx-12 mb-12 mt-1 py-4 max-w-7xl px-6  sm:px-6 lg:px-20 bg-white">
         <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 mb-5">
-          My Profile
+          <PersonIcon sx={{ height: "2.5rem", width: "2.5rem" }} /> My Profile
         </h1>
         <h3 className=" text-2xl font-bold tracking-tight text-gray-600 mb-2">
           Name : {user?.name ? user.name : "Guesst User"}
@@ -239,7 +240,7 @@ export default function UserProfile() {
             </form>
           ) : null}
           <p className="mt-0.5 text-sm text-gray-500">Your Address :</p>
-          {user.addresses.map((address, index) => (
+          {user?.addresses?.map((address, index) => (
             <>
               <div className="lg:col-span-3">
                 {selectEditIndex === index ? (

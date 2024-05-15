@@ -37,6 +37,7 @@ export default function Signup() {
                     email: onSubmit.email,
                     password: onSubmit.password,
                     addresses: [],
+                    role: "user",
                   })
                 );
               })}
