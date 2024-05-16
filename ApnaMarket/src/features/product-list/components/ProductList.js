@@ -106,6 +106,8 @@ export default function ProductList() {
 
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
+    console.log(pagination);
+    // const pagination = { _page: page, _per_page: ITEMS_PER_PAGE };
     dispatch(fetchProductsByFiltersAsync({ filter, pagination }));
   }, [dispatch, filter, page]);
 
@@ -445,6 +447,7 @@ export default function ProductList() {
                     setPage={setPage}
                     handlePage={handlePage}
                     // totalItems={totalItems}
+                    //TODO
                   ></Pagination>
                 </div>
               </main>

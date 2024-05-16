@@ -2496,53 +2496,6 @@
   "cart": [
     {
       "0": {
-        "id": "4",
-        "title": "OPPOF19",
-        "description": "OPPO F19 is officially announced on April 2021.",
-        "price": 280,
-        "discountPercentage": 17.91,
-        "rating": 4.3,
-        "stock": 123,
-        "brand": "OPPO",
-        "category": "smartphones",
-        "thumbnail": "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
-        "images": [
-          "https://cdn.dummyjson.com/product-images/4/1.jpg",
-          "https://cdn.dummyjson.com/product-images/4/2.jpg",
-          "https://cdn.dummyjson.com/product-images/4/3.jpg",
-          "https://cdn.dummyjson.com/product-images/4/4.jpg",
-          "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"
-        ]
-      },
-      "id": "e514",
-      "quantity": 1,
-      "user": "1"
-    },
-    {
-      "0": {
-        "id": "2",
-        "title": "iPhone X",
-        "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-        "price": 899,
-        "discountPercentage": 17.94,
-        "rating": 4.44,
-        "stock": 34,
-        "brand": "Apple",
-        "category": "smartphones",
-        "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
-        "images": [
-          "https://cdn.dummyjson.com/product-images/2/1.jpg",
-          "https://cdn.dummyjson.com/product-images/2/2.jpg",
-          "https://cdn.dummyjson.com/product-images/2/3.jpg",
-          "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
-        ]
-      },
-      "id": "9a47",
-      "quantity": 1,
-      "user": "1"
-    },
-    {
-      "0": {
         "id": "1",
         "title": "iPhone 9",
         "description": "An apple mobile which is nothing like apple",
@@ -2595,7 +2548,7 @@
           "user": "1"
         }
       ],
-      "totalAmount": null,
+      "totalAmount": 250,
       "totalItem": 1,
       "user": {
         "id": "1",
@@ -2653,7 +2606,7 @@
           "user": "1"
         }
       ],
-      "totalAmount": null,
+      "totalAmount": 250,
       "totalItem": 1,
       "user": {
         "id": "1",
@@ -2690,7 +2643,7 @@
         "state": "Punjab",
         "pinCode": "873256"
       },
-      "state": "pending"
+      "state": "delivered"
     },
     {
       "id": "6638",
@@ -2720,7 +2673,7 @@
           "user": "1"
         }
       ],
-      "totalAmount": null,
+      "totalAmount": 250,
       "totalItem": 4,
       "user": {
         "id": "1",
@@ -2757,7 +2710,7 @@
         "state": "Punjab",
         "pinCode": "873256"
       },
-      "state": "pending"
+      "state": "dispatched"
     },
     {
       "id": "09fa",
@@ -2870,7 +2823,7 @@
         "state": "Rajasthan",
         "pinCode": "320034"
       },
-      "state": "pending"
+      "state": "cancelled"
     },
     {
       "id": "c95a",
@@ -3290,6 +3243,283 @@
         "city": "UDAIPUR",
         "state": "Rajasthan",
         "pinCode": "320034"
+      },
+      "state": "pending"
+    },
+    {
+      "id": "7231",
+      "items": [
+        {
+          "0": {
+            "id": "4",
+            "title": "OPPOF19",
+            "description": "OPPO F19 is officially announced on April 2021.",
+            "price": 280,
+            "discountPercentage": 17.91,
+            "rating": 4.3,
+            "stock": 123,
+            "brand": "OPPO",
+            "category": "smartphones",
+            "thumbnail": "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
+            "images": [
+              "https://cdn.dummyjson.com/product-images/4/1.jpg",
+              "https://cdn.dummyjson.com/product-images/4/2.jpg",
+              "https://cdn.dummyjson.com/product-images/4/3.jpg",
+              "https://cdn.dummyjson.com/product-images/4/4.jpg",
+              "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"
+            ]
+          },
+          "id": "e514",
+          "quantity": 1,
+          "user": "1"
+        },
+        {
+          "0": {
+            "id": "2",
+            "title": "iPhone X",
+            "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+            "price": 899,
+            "discountPercentage": 17.94,
+            "rating": 4.44,
+            "stock": 34,
+            "brand": "Apple",
+            "category": "smartphones",
+            "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+            "images": [
+              "https://cdn.dummyjson.com/product-images/2/1.jpg",
+              "https://cdn.dummyjson.com/product-images/2/2.jpg",
+              "https://cdn.dummyjson.com/product-images/2/3.jpg",
+              "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+            ]
+          },
+          "id": "9a47",
+          "quantity": 3,
+          "user": "1"
+        },
+        {
+          "0": {
+            "id": "11",
+            "title": "perfume Oil",
+            "description": "Mega Discount, Impression of Acqua Di Gio by GiorgioArmani concentrated attar perfume Oil",
+            "price": 13,
+            "discountPercentage": 8.4,
+            "rating": 4.26,
+            "stock": 65,
+            "brand": "Impression of Acqua Di Gio",
+            "category": "fragrances",
+            "thumbnail": "https://cdn.dummyjson.com/product-images/11/thumbnail.jpg",
+            "images": [
+              "https://cdn.dummyjson.com/product-images/11/1.jpg",
+              "https://cdn.dummyjson.com/product-images/11/2.jpg",
+              "https://cdn.dummyjson.com/product-images/11/3.jpg",
+              "https://cdn.dummyjson.com/product-images/11/thumbnail.jpg"
+            ]
+          },
+          "id": "cfc9",
+          "quantity": 1,
+          "user": "1"
+        }
+      ],
+      "totalAmount": null,
+      "totalItem": 5,
+      "user": {
+        "id": "1",
+        "email": "dotos63418@backva.com",
+        "password": "Qwert123",
+        "role": "user",
+        "addresses": [
+          {
+            "name": "Mukesh Choudhary ",
+            "email": "mylaptop617443@gmail.com",
+            "phone": "92215902882",
+            "street": "S.S College of Engineering wefwefwef",
+            "city": "UDAIPUR",
+            "state": "Rajasthan",
+            "pinCode": "0000000000"
+          },
+          {
+            "name": "Pinky Edited Address",
+            "email": "mylaptop617443@gmail.com",
+            "phone": "92215902882",
+            "street": "S.S College of Engineering wefwefwef",
+            "city": "UDAIPUR",
+            "state": "Rajasthan",
+            "pinCode": "320034"
+          },
+          {
+            "name": "Lalit Kumar",
+            "email": "Lalitkumar123@gmail.com",
+            "phone": "9876543210",
+            "street": "Dhani village Luvaro ki gali house no.3",
+            "city": "Dhani",
+            "state": "Rajasthan",
+            "pinCode": "8635263"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Pinky Edited Address",
+        "email": "mylaptop617443@gmail.com",
+        "phone": "92215902882",
+        "street": "S.S College of Engineering wefwefwef",
+        "city": "UDAIPUR",
+        "state": "Rajasthan",
+        "pinCode": "320034"
+      },
+      "state": "pending"
+    },
+    {
+      "id": "69d2",
+      "items": [
+        {
+          "0": {
+            "id": "12",
+            "title": "Brown Perfume",
+            "description": "Royal_Mirage Sport Brown Perfume for Men & Women - 120ml",
+            "price": 40,
+            "discountPercentage": 15.66,
+            "rating": 4,
+            "stock": 52,
+            "brand": "Royal_Mirage",
+            "category": "fragrances",
+            "thumbnail": "https://cdn.dummyjson.com/product-images/12/thumbnail.jpg",
+            "images": [
+              "https://cdn.dummyjson.com/product-images/12/1.jpg",
+              "https://cdn.dummyjson.com/product-images/12/2.jpg",
+              "https://cdn.dummyjson.com/product-images/12/3.png",
+              "https://cdn.dummyjson.com/product-images/12/4.jpg",
+              "https://cdn.dummyjson.com/product-images/12/thumbnail.jpg"
+            ]
+          },
+          "id": "bab4",
+          "quantity": 3,
+          "user": "1"
+        }
+      ],
+      "totalAmount": null,
+      "totalItem": 3,
+      "user": {
+        "id": "1",
+        "email": "dotos63418@backva.com",
+        "password": "Qwert123",
+        "role": "user",
+        "addresses": [
+          {
+            "name": "Mukesh Choudhary ",
+            "email": "mylaptop617443@gmail.com",
+            "phone": "92215902882",
+            "street": "S.S College of Engineering wefwefwef",
+            "city": "UDAIPUR",
+            "state": "Rajasthan",
+            "pinCode": "0000000000"
+          },
+          {
+            "name": "Pinky Edited Address",
+            "email": "mylaptop617443@gmail.com",
+            "phone": "92215902882",
+            "street": "S.S College of Engineering wefwefwef",
+            "city": "UDAIPUR",
+            "state": "Rajasthan",
+            "pinCode": "320034"
+          },
+          {
+            "name": "Lalit Kumar",
+            "email": "Lalitkumar123@gmail.com",
+            "phone": "9876543210",
+            "street": "Dhani village Luvaro ki gali house no.3",
+            "city": "Dhani",
+            "state": "Rajasthan",
+            "pinCode": "8635263"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Mukesh Choudhary ",
+        "email": "mylaptop617443@gmail.com",
+        "phone": "92215902882",
+        "street": "S.S College of Engineering wefwefwef",
+        "city": "UDAIPUR",
+        "state": "Rajasthan",
+        "pinCode": "0000000000"
+      },
+      "state": "pending"
+    },
+    {
+      "id": "ea54",
+      "items": [
+        {
+          "0": {
+            "id": "9",
+            "title": "Infinix INBOOK",
+            "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
+            "price": 1099,
+            "discountPercentage": 11.83,
+            "rating": 4.54,
+            "stock": 96,
+            "brand": "Infinix",
+            "category": "laptops",
+            "thumbnail": "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg",
+            "images": [
+              "https://cdn.dummyjson.com/product-images/9/1.jpg",
+              "https://cdn.dummyjson.com/product-images/9/2.png",
+              "https://cdn.dummyjson.com/product-images/9/3.png",
+              "https://cdn.dummyjson.com/product-images/9/4.jpg",
+              "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg"
+            ]
+          },
+          "id": "926b",
+          "quantity": 1,
+          "user": "1"
+        }
+      ],
+      "totalAmount": null,
+      "totalItem": 1,
+      "user": {
+        "id": "1",
+        "email": "dotos63418@backva.com",
+        "password": "Qwert123",
+        "role": "user",
+        "addresses": [
+          {
+            "name": "Mukesh Choudhary ",
+            "email": "mylaptop617443@gmail.com",
+            "phone": "92215902882",
+            "street": "S.S College of Engineering wefwefwef",
+            "city": "UDAIPUR",
+            "state": "Rajasthan",
+            "pinCode": "0000000000"
+          },
+          {
+            "name": "Pinky Edited Address",
+            "email": "mylaptop617443@gmail.com",
+            "phone": "92215902882",
+            "street": "S.S College of Engineering wefwefwef",
+            "city": "UDAIPUR",
+            "state": "Rajasthan",
+            "pinCode": "320034"
+          },
+          {
+            "name": "Lalit Kumar",
+            "email": "Lalitkumar123@gmail.com",
+            "phone": "9876543210",
+            "street": "Dhani village Luvaro ki gali house no.3",
+            "city": "Dhani",
+            "state": "Rajasthan",
+            "pinCode": "8635263"
+          }
+        ]
+      },
+      "paymentMethod": "online",
+      "selectedAddress": {
+        "name": "Lalit Kumar",
+        "email": "Lalitkumar123@gmail.com",
+        "phone": "9876543210",
+        "street": "Dhani village Luvaro ki gali house no.3",
+        "city": "Dhani",
+        "state": "Rajasthan",
+        "pinCode": "8635263"
       },
       "state": "pending"
     }
