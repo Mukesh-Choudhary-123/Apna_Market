@@ -1,8 +1,44 @@
+import React, { useEffect, useRef, useState } from "react";
+import "./Promo.css";
+
 function Promo() {
+  const colors = ["#0088FE", "#00C49F", "#FFBB28"];
+  const images = [
+    "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg",
+    "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg",
+    "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg",
+    "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg",
+    "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg",
+    "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg",
+  ];
+  const delay = 2500;
+  const [index, setIndex] = useState(0);
+  const timeoutRef = useRef(null);
+
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }
+
+  useEffect(() => {
+    resetTimeout();
+    timeoutRef.current = setTimeout(
+      () =>
+        setIndex((prevIndex) =>
+          prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        ),
+      delay
+    );
+
+    return () => {
+      resetTimeout();
+    };
+  }, [index]);
   return (
     <>
       {" "}
-      <div className="relative overflow-hidden bg-white">
+      <div className="relative overflow-hidden bg-gradient-to-l from-[rgba(223,27,51,255)] via-[#d25252] to-gray-300">
         <div className="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
           <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
             <div className="sm:max-w-lg">
@@ -22,15 +58,27 @@ function Promo() {
                   className="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
                 >
                   <div className="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
-                    <div className="flex items-center space-x-6 lg:space-x-8">
-                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                        <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
+                    <div className="flex items-center space-x-5 lg:space-x-5">
+                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-4">
+                        <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100 slide-container">
+                          <div className="slideshow">
+                            <div
+                              className="slideshowSlider"
+                              style={{
+                                transform: `translate3d(${
+                                  -index * 100
+                                }%, 0, 0)`,
+                              }}
+                            >
+                              {images.map((url, index) => (
+                                <div className="slide" key={index}>
+                                  <img src={url} alt="" />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
+
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
                             src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg"
@@ -39,10 +87,10 @@ function Promo() {
                           />
                         </div>
                       </div>
-                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
+                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-4">
+                        <div className="h-44 mt-20 w-44 overflow-hidden rounded-lg">
                           <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg"
+                            src="https://m.media-amazon.com/images/G/31/img21/Pharmacy/BAU/2024/Rewamp_R2_24_SBC._CB582764466_.jpg"
                             alt=""
                             className="h-full w-full object-cover object-center"
                           />
@@ -54,7 +102,7 @@ function Promo() {
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
+                        <div className="h-44 w-44 mb-24 overflow-hidden rounded-lg">
                           <img
                             src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg"
                             alt=""
@@ -62,7 +110,7 @@ function Promo() {
                           />
                         </div>
                       </div>
-                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-4">
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
                             src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg"

@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { updateUserAsync } from "../auth/AuthSlice";
 import { createOrderAsync, selectCurrentOrder } from "../order/OrderSlice";
 import { selectUserInfo } from "../user/UserSlice";
+import toast from "react-hot-toast";
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function Checkout() {
 
   const handleRemove = (e, id) => {
     dispatch(deleteItemFromCartAsync(id));
+    toast.error("remove item from cart");
   };
 
   const handleAddress = (e) => {
@@ -263,6 +265,7 @@ function Checkout() {
                             onChange={handleAddress}
                             name="address"
                             type="radio"
+                            required
                             value={index}
                             className="h-4 w-4 border-gray-300 text-[rgba(223,27,51,255)] focus:ring-[rgba(223,27,51,255)]"
                           />
@@ -309,7 +312,7 @@ function Checkout() {
                   </ul>
 
                   <div className="mt-10 space-y-10">
-                    <fieldset>
+                    <fieldset required>
                       <legend className="text-sm font-semibold leading-6 text-gray-900">
                         Payment Method
                       </legend>
@@ -358,6 +361,8 @@ function Checkout() {
               </div>
             </form>
           </div>
+
+          {/* Cart */}
           <div className="lg:col-span-2">
             <div className="mb-12 mt-12 py-4 max-w-7xl px-0  sm:px-0 lg:px-0 bg-white">
               <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 mb-5">
@@ -401,6 +406,7 @@ function Checkout() {
                                   <select
                                     onChange={(e) => handleQuantity(e, item)}
                                     value={item.quantity}
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[rgba(223,27,51,255)] sm:max-w-xs sm:text-sm sm:leading-6"
                                   >
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -426,7 +432,7 @@ function Checkout() {
                       ))}
                     </ul>
                   ) : (
-                    <p>No items in your cart.</p>
+                    <p>No items in your cart yet.</p>
                   )}
                 </div>
               </div>

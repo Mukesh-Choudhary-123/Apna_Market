@@ -78,5 +78,6 @@ export const selectCurrentOrder = (state) => state.order.currentOrder;
 export const selectOrders = (state) => state.order.orders;
 
 export const selectTotalOrder = (state) => state.order.totalOrders;
+export const selectOrderStatus = (state) => state.order.status;
 
 export default orderSlice.reducer;

@@ -7,10 +7,13 @@ import {
   Bars3Icon,
   ShoppingCartIcon,
   XMarkIcon,
+  UserIcon,
 } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 import { selectItem } from "../cart/CartSlice";
 import { selectLoggedInUser } from "../auth/AuthSlice";
+import ProfileLogo from "./Profile.png";
+import { Tooltip } from "react-tooltip";
 
 const user = {
   name: "Tom Cook",
@@ -19,8 +22,8 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Home", link: "/", user: true },
-  { name: "Cart", link: "/cart", user: true },
+  // { name: "Home", link: "/", user: true },
+  // { name: "Cart", link: "/cart", user: true },
   { name: "Admin", link: "/admin", admin: true },
   { name: "Orders", link: "/admin/orders", admin: true },
 ];
@@ -42,7 +45,10 @@ const Navbar = ({ children }) => {
       {" "}
       <div className="min-h-full">
         {/* gray-800 */}
-        <Disclosure as="nav" className="bg-[rgba(223,27,51,255)]">
+        <Disclosure
+          as="nav"
+          className="bg-gradient-to-l from-[rgba(223,27,51,255)] via-[#d25252] to-gray-300"
+        >
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -50,7 +56,7 @@ const Navbar = ({ children }) => {
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                       <Link to="/">
-                        <div className="h-10  bg-white rounded-full text-align: center;">
+                        <div className="h-10   rounded-full text-align: center;">
                           <img
                             className="h-10  rounded-full"
                             src={logo}
@@ -60,7 +66,7 @@ const Navbar = ({ children }) => {
                       </Link>
                     </div>
                     <div className="mx-auto max-w-7xl px-2 py-5 sm:px-3 lg:px-4">
-                      <h1 className="text-3xl font-bold tracking-tight text-zinc-50">
+                      <h1 className="text-3xl font-bold tracking-tight text-gray-700">
                         Apna Market
                       </h1>
                     </div>
@@ -91,36 +97,51 @@ const Navbar = ({ children }) => {
                     <div className="ml-4 flex items-center md:ml-6">
                       <Link to="/cart">
                         <button
+                          data-tooltip-id="my-cart"
                           type="button"
-                          className="relative rounded-full bg-[rgba(223,27,51,255)] p-1  text-white hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                          className="relative rounded-full bg- p-1  text-black hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                         >
                           <span className="absolute -inset-1.5" />
                           <span className="sr-only">View notifications</span>
                           <ShoppingCartIcon
-                            className="h-6 w-6"
+                            className="h-7 w-7"
                             aria-hidden="true"
                           />
                         </button>
                       </Link>
 
                       {items.length > 0 && (
-                        <span className="inline-flex items-center rounded-md mb-5 bg-red-50 px-2 py-1  text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                        <span className="inline-flex items-center rounded-full mb-5 bg-red-50 px-2 py-1  text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                           {items.length}
                         </span>
                       )}
-
+                      <Tooltip
+                        id="my-cart"
+                        place="top"
+                        content="My Cart"
+                        style={{ position: "absolute", zIndex: "7" }}
+                      />
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>
-                          <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <Menu.Button
+                            data-tooltip-id="my-profile"
+                            className="relative rounded-full    text-black hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                          >
                             <span className="absolute -inset-1.5" />
                             <span className="sr-only">Open user menu</span>
-                            <img
-                              className="h-8 w-8 rounded-full"
-                              src={user.imageUrl}
-                              alt=""
+
+                            <UserIcon
+                              className="h-7 w-7 mt-1"
+                              aria-hidden="true"
                             />
                           </Menu.Button>
+                          <Tooltip
+                            id="my-profile"
+                            place="top"
+                            content="My Profile"
+                            style={{ position: "absolute", zIndex: "7" }}
+                          />
                         </div>
                         <Transition
                           as={Fragment}
@@ -255,7 +276,7 @@ const Navbar = ({ children }) => {
         </header> */}
         <main>
           {/* <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8"> */}
-          <div className="mx-auto  py-6 sm:px-6 lg:px-8">{children}</div>
+          <div className="mx-auto ">{children}</div>
         </main>
       </div>
     </div>

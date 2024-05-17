@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,10 +11,13 @@ import {
   updateProductAsync,
 } from "../../product-list/ProductSlice";
 import { useParams } from "react-router-dom";
+import Modal from "../../common/Modal";
 
 const ProductForm = () => {
   const dispatch = useDispatch();
   const params = useParams();
+
+  const [openModal, setOpenModal] = useState(null);
 
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
@@ -102,6 +105,9 @@ const ProductForm = () => {
             <h2 className=" text-2xl text-center font-bold leading-8 text-gray-900">
               Add Product
             </h2>
+            {selectedProducts?.deleted && (
+              <h3 className="text-red-600"> This Product is deleted </h3>
+            )}
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 pb-12">
               {/* title */}
               <div className="sm:col-span-2">
@@ -498,9 +504,12 @@ const ProductForm = () => {
             </button>
 
             {/* delete */}
-            {selectedProducts && (
+            {selectedProducts && !selectedProducts[0].deleted && (
               <button
-                onClick={handleDelete}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenModal(true);
+                }}
                 className="rounded-md bg-[rgb(2,2,2)] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#7f7474] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(223,27,51,255)]"
               >
                 Delete
@@ -517,6 +526,15 @@ const ProductForm = () => {
           </div>
         </div>
       </div>
+      <Modal
+        title={`Delete this Product`}
+        message={"Are you sure you want to delete this Product ? "}
+        dangerOption={"Delete"}
+        cancelOption={"Cancel"}
+        cancelAction={() => setOpenModal(null)}
+        dangerAction={handleDelete}
+        showModal={openModal}
+      />
     </form>
   );
 };

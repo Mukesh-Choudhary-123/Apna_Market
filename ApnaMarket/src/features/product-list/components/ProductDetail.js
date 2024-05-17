@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
-import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
-import { fetchProductByIdAsync, selectProductById } from "../ProductSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { Await, useNavigate, useParams } from "react-router-dom";
-import { addToCart } from "../../cart/CartAPI";
-import { addToCartAsync } from "../../cart/CartSlice";
+import { StarIcon } from "@heroicons/react/20/solid";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { selectLoggedInUser } from "../../auth/AuthSlice";
+import { addToCartAsync, selectItem } from "../../cart/CartSlice";
+import {
+  fetchProductByIdAsync,
+  selectProductById,
+  selectProductListStatus,
+} from "../ProductSlice";
+import { toast } from "react-hot-toast";
+import { InfinitySpin } from "react-loader-spinner";
 
 const sizes = [
   { name: "XXS", inStock: false },
@@ -40,15 +45,38 @@ export default function ProductDetail() {
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   const product = useSelector(selectProductById);
   const user = useSelector(selectLoggedInUser);
+  const items = useSelector(selectItem);
+  const status = useSelector(selectProductListStatus);
 
   const dispatch = useDispatch();
   const param = useParams();
 
   const handleCart = (e) => {
     e.preventDefault();
-    const newItem = { ...product, quantity: 1, user: user.id };
-    delete newItem["id"];
-    dispatch(addToCartAsync(newItem));
+    console.log(product);
+    console.log(items);
+    if (items.findIndex((item) => item?.productId === product.id) < 0) {
+      const newItem = {
+        ...product,
+        productId: product[0].id,
+        quantity: 1,
+        user: user.id,
+      };
+      delete newItem["id"];
+      dispatch(addToCartAsync(newItem));
+      toast.success("Item added successfully", {
+        icon: "💖",
+        duration: 2000,
+        position: "top-right",
+        style: {
+          background: "green",
+          color: "white",
+        },
+      });
+    } else {
+      toast.error("already added");
+      console.log("already added");
+    }
   };
 
   useEffect(() => {
@@ -61,48 +89,17 @@ export default function ProductDetail() {
 
   return (
     <div className="bg-white">
+      {status === "loading" ? (
+        <InfinitySpin
+          visible={true}
+          width="200"
+          color="#df1b33"
+          ariaLabel="infinity-spin-loading"
+          className="align-center"
+        />
+      ) : null}
       {product && (
         <div className="pt-6">
-          {/* <nav aria-label="Breadcrumb">
-          <ol
-            role="list"
-            className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
-          >
-            {product.breadcrumbs &&
-              product.breadcrumbs.map((breadcrumb) => (
-                <li key={breadcrumb.id}>
-                  <div className="flex items-center">
-                    <a
-                      href={breadcrumb.href}
-                      className="mr-2 text-sm font-medium text-gray-900"
-                    >
-                      {breadcrumb.name}
-                    </a>
-                    <svg
-                      width={16}
-                      height={20}
-                      viewBox="0 0 16 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                      className="h-5 w-4 text-gray-300"
-                    >
-                      <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                    </svg>
-                  </div>
-                </li>
-              ))}
-            <li className="text-sm">
-              <a
-                href={product.href}
-                aria-current="page"
-                className="font-medium text-gray-500 hover:text-gray-600"
-              >
-                {product.title}
-              </a>
-            </li>
-          </ol>
-        </nav> */}
-
           {/* Image gallery */}
           <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
             <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">

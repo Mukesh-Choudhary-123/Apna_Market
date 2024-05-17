@@ -110,5 +110,6 @@ export const cartSlice = createSlice({
 export const { increment } = cartSlice.actions;
 
 export const selectItem = (state) => state.cart.item;
+export const selectCartStatus = (state) => state.cart.status;
 
 export default cartSlice.reducer;
