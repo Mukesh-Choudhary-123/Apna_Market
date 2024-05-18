@@ -8,7 +8,11 @@ const cors = require("cors");
 const port = 8080;
 
 //middleware
-server.use(cors());
+server.use(
+  cors({
+    exposedHeaders: ["X-Total-Count"],
+  })
+);
 
 server.use(express.json()); // to parse req.body
 server.use("/products", productsRouter.router);
