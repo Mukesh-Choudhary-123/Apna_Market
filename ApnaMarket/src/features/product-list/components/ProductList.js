@@ -1,29 +1,22 @@
-import React, {
-  useState,
-  Fragment,
-  useRef,
-  useReducer,
-  useEffect,
-} from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchAllProductsAsync,
-  fetchProductsByFiltersAsync,
-  selectAllProducts,
-  selectTotalItems,
-  selectBrands,
-  selectCategories,
-  fetchBrandsAsync,
-  fetchCategoriesAsync,
-  selectProductListStatus,
-} from "../ProductSlice";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   StarIcon,
 } from "@heroicons/react/20/solid";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import React, { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchBrandsAsync,
+  fetchCategoriesAsync,
+  fetchProductsByFiltersAsync,
+  selectAllProducts,
+  selectBrands,
+  selectCategories,
+  selectProductListStatus,
+  selectTotalItems,
+} from "../ProductSlice";
 
 import {
   ChevronDownIcon,
@@ -32,10 +25,9 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
-import { Link } from "react-router-dom";
-import { fetchAllProducts } from "../ProductAPI";
-import { ITEMS_PER_PAGE } from "../../../app/constants";
 import { InfinitySpin } from "react-loader-spinner";
+import { Link } from "react-router-dom";
+import { ITEMS_PER_PAGE } from "../../../app/constants";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", current: false },
@@ -437,6 +429,13 @@ export default function ProductList() {
                                 </div>
                               </div>
                             </div>
+                            {product.stock <= 0 && (
+                              <div>
+                                <p className="text-red-600 text-center">
+                                  ( Out of Stock )
+                                </p>
+                              </div>
+                            )}
                           </Link>
                         ))}
                       </div>
@@ -450,7 +449,7 @@ export default function ProductList() {
                 page={page}
                 setPage={setPage}
                 handlePage={handlePage}
-                // totalItems={totalItems}
+                totalItems={totalItems}
                 //TODO
               ></Pagination>
             </div>
@@ -461,7 +460,7 @@ export default function ProductList() {
   );
 }
 
-function Pagination({ page, setPage, handlePage, totalItems = 100 }) {
+function Pagination({ page, setPage, handlePage, totalItems }) {
   const totalPage = Math.ceil(totalItems / ITEMS_PER_PAGE);
   return (
     <>

@@ -7,7 +7,7 @@
       "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
       "price": 8,
       "discountPercentage": 17.94,
-      "stock": 34,
+      "stock": 0,
       "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
       "images": [
         "https://cdn.dummyjson.com/product-images/2/1.jpg",
@@ -1418,9 +1418,7 @@
       "brand": "Fashion Jewellery",
       "category": "womens-jewellery",
       "thumbnail": "https://cdn.dummyjson.com/product-images/78/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/78/thumbnail.jpg"
-      ]
+      "images": ["https://cdn.dummyjson.com/product-images/78/thumbnail.jpg"]
     },
     {
       "id": "79",
@@ -1433,9 +1431,7 @@
       "brand": "Fashion Jewellery",
       "category": "womens-jewellery",
       "thumbnail": "https://cdn.dummyjson.com/product-images/79/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/79/1.jpg"
-      ]
+      "images": ["https://cdn.dummyjson.com/product-images/79/1.jpg"]
     },
     {
       "id": "80",
@@ -2546,6 +2542,32 @@
       "productId": "12",
       "quantity": 1,
       "user": "1"
+    },
+    {
+      "0": {
+        "id": "4",
+        "title": "OPPOF19",
+        "description": "OPPO F19 is officially announced on April 2021.",
+        "price": 280,
+        "discountPercentage": 17.91,
+        "rating": 4.3,
+        "stock": 123,
+        "brand": "OPPO",
+        "category": "smartphones",
+        "thumbnail": "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
+        "images": [
+          "https://cdn.dummyjson.com/product-images/4/1.jpg",
+          "https://cdn.dummyjson.com/product-images/4/2.jpg",
+          "https://cdn.dummyjson.com/product-images/4/3.jpg",
+          "https://cdn.dummyjson.com/product-images/4/4.jpg",
+          "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"
+        ],
+        "deleted": true
+      },
+      "id": "961b",
+      "productId": "4",
+      "quantity": 1,
+      "user": "0fc7"
     }
   ],
   "orders": [

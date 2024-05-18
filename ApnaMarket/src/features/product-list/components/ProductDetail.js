@@ -53,8 +53,8 @@ export default function ProductDetail() {
 
   const handleCart = (e) => {
     e.preventDefault();
-    console.log(product);
-    console.log(items);
+    // console.log(product);
+    // console.log(items);
     if (items.findIndex((item) => item?.productId === product.id) < 0) {
       const newItem = {
         ...product,
@@ -65,13 +65,13 @@ export default function ProductDetail() {
       delete newItem["id"];
       dispatch(addToCartAsync(newItem));
       toast.success("Item added successfully", {
-        icon: "💖",
-        duration: 2000,
-        position: "top-right",
-        style: {
-          background: "green",
-          color: "white",
-        },
+        icon: "🛒✔",
+        // duration: 2000,
+        // position: "top-right",
+        // style: {
+        //   background: "green",
+        //   color: "white",
+        // },
       });
     } else {
       toast.error("already added");

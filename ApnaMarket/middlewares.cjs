@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
     if (req.method === "GET") {
       data = JSON.stringify({
         Data: JSON.parse(data),
-        TotalCount: this.getHeader("X-Total-Count") ?? null,
+        TotalCount: this.getHeader("X-Total-Count"),
       });
     }
 
