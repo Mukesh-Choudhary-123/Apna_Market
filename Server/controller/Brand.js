@@ -5,7 +5,7 @@ exports.fetchBrands = async (req, res) => {
     const brands = await Brand.find({}).exec();
     res.status(200).json(brands);
   } catch (error) {
-    res.status(400).json();
+    res.status(400).json(error);
   }
 };
 

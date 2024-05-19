@@ -34,6 +34,13 @@ const sortOptions = [
   { name: "Price: Low to High", sort: "price", current: false },
   { name: "Price: High to Low", sort: "price", current: false },
 ];
+const subCategories = [
+  { name: "Totes", href: "#" },
+  { name: "Backpacks", href: "#" },
+  { name: "Travel Bags", href: "#" },
+  { name: "Hip Bags", href: "#" },
+  { name: "Laptop Sleeves", href: "#" },
+];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -229,15 +236,11 @@ export default function ProductList() {
           </Transition.Root>
 
           <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="inline ">
+            <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+                New Arrivals
+              </h1>
               <div className="flex items-center">
-                <button
-                  type="button"
-                  className="-m-2 mr-2 p-2 text-gray-400 hover:text-gray-500 sm:ml-7"
-                >
-                  <span className="sr-only">View grid</span>
-                  <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
-                </button>
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
                     <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
@@ -284,7 +287,13 @@ export default function ProductList() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-
+                <button
+                  type="button"
+                  className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
+                >
+                  <span className="sr-only">View grid</span>
+                  <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
+                </button>
                 <button
                   type="button"
                   className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
@@ -295,9 +304,6 @@ export default function ProductList() {
                 </button>
               </div>
             </div>
-            <h1 className="text-center  text-4xl font-bold tracking-tight text-gray-900">
-              All Products
-            </h1>
 
             <section aria-labelledby="products-heading" className="pb-24 pt-6">
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
@@ -305,7 +311,18 @@ export default function ProductList() {
 
                 <form className="hidden lg:block">
                   <h3 className="sr-only">Categories</h3>
-
+                  <ul
+                    role="list"
+                    className="px-2 py-3 font-medium text-gray-900"
+                  >
+                    {subCategories.map((category) => (
+                      <li key={category.name}>
+                        <a href={category.href} className="block px-2 py-3">
+                          {category.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                   {filters.map((section) => (
                     <Disclosure
                       as="div"

@@ -70,7 +70,7 @@ exports.fetchProductById = async (req, res) => {
   }
 };
 
-exports.UpdateProduct = async (req, res) => {
+exports.updateProduct = async (req, res) => {
   const { id } = req.params;
   try {
     const product = await Product.findByIdAndUpdate(id, req.body, {

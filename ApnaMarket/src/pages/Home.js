@@ -15,7 +15,7 @@ function Home() {
         <CategorySection></CategorySection>
         <ProductList></ProductList>
       </Navbar>
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Footer></Footer>
     </div>
   );

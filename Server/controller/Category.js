@@ -5,7 +5,7 @@ exports.fetchCategories = async (req, res) => {
     const categories = await Category.find({}).exec();
     res.status(200).json(categories);
   } catch (error) {
-    res.status(400).json();
+    res.status(400).json(error);
   }
 };
 
