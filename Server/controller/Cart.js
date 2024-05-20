@@ -39,7 +39,12 @@ exports.updateCart = async (req, res) => {
     const cart = await Cart.findByIdAndUpdate(id, req.body, {
       new: true,
     });
-    res.status(200).json(cart);
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+
+    const result = await Cart.populate("products");
+    res.status(200).json(result);
   } catch (err) {
     console.log({ err });
     res.status(400).json(err);

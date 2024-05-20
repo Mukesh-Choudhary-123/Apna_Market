@@ -23,7 +23,17 @@ export function fetchProductsByFilters(filter, pagination) {
     );
     const data = await response.json();
     const totalItems = response.headers.get("X-Total-Count");
-    console.log(totalItems);
+    resolve({ data: { products: data, totalItems: +totalItems } });
+  });
+}
+
+export function fetchBestCategories(queryString) {
+  return new Promise(async (resolve) => {
+    const response = await fetch(
+      "http://localhost:8080/products?category=" + queryString
+    );
+    const data = await response.json();
+    const totalItems = response.headers.get("X-Total-Count");
     resolve({ data: { products: data, totalItems: +totalItems } });
   });
 }
@@ -46,7 +56,7 @@ export function fetchBrands() {
 
 export function fetchProductById(id) {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:8080/products?id=" + id);
+    const response = await fetch("http://localhost:8080/products/" + id);
     const data = await response.json();
     resolve({ data });
   });

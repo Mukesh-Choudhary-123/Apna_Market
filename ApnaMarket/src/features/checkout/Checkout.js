@@ -8,7 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { updateUserAsync } from "../auth/AuthSlice";
+import { selectLoggedInUser, updateUserAsync } from "../auth/AuthSlice";
 import { createOrderAsync, selectCurrentOrder } from "../order/OrderSlice";
 import { selectUserInfo } from "../user/UserSlice";
 import toast from "react-hot-toast";
@@ -24,9 +24,11 @@ function Checkout() {
   } = useForm();
 
   const user = useSelector(selectUserInfo);
+  // const user = useSelector(selectLoggedInUser);
   const currentOrder = useSelector(selectCurrentOrder);
   const items = useSelector(selectItem);
   const item = items;
+  console.log(user);
 
   const totalAmount = items.reduce(
     (amount, item) => discountedPrice(item.product) * item.quantity + amount,
@@ -255,8 +257,8 @@ function Checkout() {
                   <p className="mt-1 text-sm leading-6 text-gray-600">
                     Choose from Existing addresses
                   </p>
-                  <ul role="list">
-                    {user.addresses.map((address, index) => (
+                  {/* <ul role="list">
+                    {user?.addresses?.map((address, index) => (
                       <li
                         key={index}
                         className="flex justify-between gap-x-6 mt-2 py-5 px-4 border-solid border-2 border-gray-200"
@@ -311,7 +313,7 @@ function Checkout() {
                         </div>
                       </li>
                     ))}
-                  </ul>
+                  </ul> */}
 
                   <div className="mt-10 space-y-10">
                     <fieldset required>
