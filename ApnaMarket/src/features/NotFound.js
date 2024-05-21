@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
 import animationData from "./Animation404.json";
+import { useEffect } from "react";
 export default function NotFound() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <main className="grid min-h-full place-items-center bg-white px-6 py-15 sm:py-16 lg:px-8">

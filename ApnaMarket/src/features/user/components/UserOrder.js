@@ -12,18 +12,18 @@ import Footer from "../../common/Footer";
 
 export default function UserOrder() {
   const dispatch = useDispatch();
-  const user = useSelector(selectUserInfo);
+  const userInfo = useSelector(selectUserInfo);
   const orders = useSelector(selectUserOrder);
   const status = useSelector(selectOrderStatus);
 
   useEffect(() => {
-    dispatch(fetchLoggedInUserOrderAsync(user.id));
-  }, [dispatch, user]);
+    dispatch(fetchLoggedInUserOrderAsync(userInfo.id));
+  }, [dispatch, userInfo.id]);
 
   return (
     <>
       {!orders.length ? (
-        <> Abhi tak kuch order hi nahi kara</>
+        <h1 className="text-center"> Abhi tak kuch order hi nahi kara</h1>
       ) : (
         <div>
           <div className="mx-12 mb-12 mt-1 py-4 max-w-7xl px-6  sm:px-6 lg:px-20 bg-white">
@@ -59,8 +59,8 @@ export default function UserOrder() {
                           <li key={item.id} className="flex py-6">
                             <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                               <img
-                                src={item[0].images[0]}
-                                alt={item}
+                                src={item.product.thumbnail}
+                                alt={item.product.title}
                                 className="h-full w-full object-cover object-center"
                               />
                             </div>
@@ -69,12 +69,12 @@ export default function UserOrder() {
                               <div>
                                 <div className="flex justify-between text-base font-medium text-gray-900">
                                   <h3>
-                                    <a href={item.href}>{item[0].title}</a>
+                                    <a href={item.href}>{item.product.title}</a>
                                   </h3>
-                                  <p className="ml-4">$ {item[0].price}</p>
+                                  <p className="ml-4">$ {item.product.price}</p>
                                 </div>
                                 <p className="mt-1 text-sm text-gray-500">
-                                  {item[0].brand}
+                                  {item.product.brand}
                                 </p>
                               </div>
                               <div className="flex flex-1 items-end justify-between text-sm">
@@ -99,11 +99,11 @@ export default function UserOrder() {
                 <div className="border-t   border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                     <p>Subtotal</p>
-                    <p>$ 200 </p>
+                    <p>$ {order?.totalAmount}</p>
                   </div>
                   <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                     <p>Total Item's in Cart</p>
-                    <p>{order.totalItem} items</p>
+                    <p>{order?.totalItems} items</p>
                   </div>
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">

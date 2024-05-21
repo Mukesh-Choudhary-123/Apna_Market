@@ -40,6 +40,7 @@ function classNames(...classes) {
 const Navbar = ({ children }) => {
   const items = useSelector(selectItem);
   const user = useSelector(selectLoggedInUser);
+  console.log(user);
   return (
     <div>
       {" "}

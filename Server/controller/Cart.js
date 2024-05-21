@@ -24,6 +24,7 @@ exports.addToCart = async (req, res) => {
 
 exports.deleteFromCart = async (req, res) => {
   const { id } = req.params;
+  console.log(id);
   try {
     const doc = await Cart.findByIdAndDelete(id);
     res.status(200).json(doc);
@@ -35,15 +36,14 @@ exports.deleteFromCart = async (req, res) => {
 
 exports.updateCart = async (req, res) => {
   const { id } = req.params;
+
   try {
     const cart = await Cart.findByIdAndUpdate(id, req.body, {
       new: true,
     });
-    if (!cart) {
-      return res.status(404).json({ message: "Cart not found" });
-    }
 
-    const result = await Cart.populate("products");
+    const result = await cart.populate("product");
+
     res.status(200).json(result);
   } catch (err) {
     console.log({ err });

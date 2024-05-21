@@ -109,7 +109,6 @@ export default function ProductList() {
 
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
-    console.log(pagination);
     // const pagination = { _page: page, _per_page: ITEMS_PER_PAGE };
     dispatch(fetchProductsByFiltersAsync({ filter, pagination }));
   }, [dispatch, filter, page]);
@@ -395,7 +394,7 @@ export default function ProductList() {
                           width="200"
                           color="#df1b33"
                           ariaLabel="infinity-spin-loading"
-                          className="align-center"
+                          className="align-center inline"
                         />
                       ) : null}
                       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">

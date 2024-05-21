@@ -6,7 +6,8 @@ import PersonIcon from "@mui/icons-material/Person";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
-  const user = useSelector(selectUserInfo);
+  const userInfo = useSelector(selectUserInfo);
+  console.log(userInfo);
 
   const [selectEditIndex, setSelectedEditIndex] = useState(-1);
   const [showAddAddressForm, setShowAddAddressForm] = useState(false);
@@ -20,21 +21,21 @@ export default function UserProfile() {
   } = useForm();
 
   const handleEdit = (addressUpdate, index) => {
-    const newUser = { ...user, addresses: [...user.addresses] };
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] };
     newUser.addresses.splice(index, 1, addressUpdate);
     dispatch(updateUserAsync(newUser));
     setSelectedEditIndex(-1);
   };
 
   const handleRemove = (e, index) => {
-    const newUser = { ...user, addresses: [...user.addresses] };
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] };
     newUser.addresses.splice(index, 1);
     dispatch(updateUserAsync(newUser));
   };
   const handleEditForm = (index) => {
     setSelectedEditIndex(index);
-    const address = user.addresses[index];
-    setValue("name", user.addresses[index].name);
+    const address = userInfo.addresses[index];
+    setValue("name", userInfo.addresses[index].name);
     setValue("email", address.email);
     setValue("phone", address.phone);
     setValue("street", address.street);
@@ -44,7 +45,10 @@ export default function UserProfile() {
   };
 
   const handleAdd = (address) => {
-    const newUser = { ...user, addresses: [...user.addresses, address] };
+    const newUser = {
+      ...userInfo,
+      addresses: [...userInfo.addresses, address],
+    };
     dispatch(updateUserAsync(newUser));
     setShowAddAddressForm(false);
   };
@@ -56,10 +60,10 @@ export default function UserProfile() {
           <PersonIcon sx={{ height: "2.5rem", width: "2.5rem" }} /> My Profile
         </h1>
         <h3 className=" text-2xl font-bold tracking-tight text-gray-600 mb-2">
-          Name : {user?.name ? user.name : "Guesst User"}
+          Name : {userInfo?.name ? userInfo.name : "Guesst User"}
         </h3>
         <h3 className="tracking-tight text-gray-600 mb-2">
-          Email : {user?.email ? user.email : "guesst123@hotlook.com"}
+          Email : {userInfo?.email ? userInfo.email : "guesst123@hotlook.com"}
         </h3>
 
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
@@ -240,7 +244,7 @@ export default function UserProfile() {
             </form>
           ) : null}
           <p className="mt-0.5 text-sm text-gray-500">Your Address :</p>
-          {user?.addresses?.map((address, index) => (
+          {userInfo?.addresses?.map((address, index) => (
             <>
               <div className="lg:col-span-3">
                 {selectEditIndex === index ? (

@@ -21,6 +21,7 @@ export function fetchItemByUserId(userId) {
 }
 
 export function updateCart(update) {
+  console.log(update);
   return new Promise(async (resolve) => {
     const response = await fetch("http://localhost:8080/cart/" + update.id, {
       method: "PATCH",
@@ -28,15 +29,17 @@ export function updateCart(update) {
       headers: { "content-type": "application/json" },
     });
     const data = await response.json();
+    console.log("DATADA : ", data);
     resolve({ data });
   });
 }
 
 export function deleteItemFromCart(itemId) {
+  console.log(itemId);
   return new Promise(async (resolve) => {
     const response = await fetch("http://localhost:8080/cart/" + itemId, {
       method: "DELETE",
-      body: JSON.stringify(itemId),
+      body: JSON.stringify(),
       headers: { "content-type": "application/json" },
     });
     const data = await response.json();

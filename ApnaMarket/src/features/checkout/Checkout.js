@@ -8,9 +8,9 @@ import {
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { selectLoggedInUser, updateUserAsync } from "../auth/AuthSlice";
+
 import { createOrderAsync, selectCurrentOrder } from "../order/OrderSlice";
-import { selectUserInfo } from "../user/UserSlice";
+import { selectUserInfo, updateUserAsync } from "../user/UserSlice";
 import toast from "react-hot-toast";
 import { discountedPrice } from "../../app/constants";
 
@@ -34,7 +34,7 @@ function Checkout() {
     (amount, item) => discountedPrice(item.product) * item.quantity + amount,
     0
   );
-  const totalItem = items.reduce((total, item) => item.quantity + total, 0);
+  const totalItems = items.reduce((total, item) => item.quantity + total, 0);
 
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("cash");
@@ -62,11 +62,11 @@ function Checkout() {
     const order = {
       items,
       totalAmount,
-      totalItem,
+      totalItems,
       user: user.id,
       paymentMethod,
       selectedAddress,
-      state: "pending",
+      status: "pending",
     };
     dispatch(createOrderAsync(order));
   };
@@ -87,6 +87,8 @@ function Checkout() {
               className="bg-white mt-12 px-3 py-6"
               noValidate
               onSubmit={handleSubmit((data) => {
+                console.log("DATA : ", data);
+
                 dispatch(
                   updateUserAsync({
                     ...user,
@@ -257,7 +259,7 @@ function Checkout() {
                   <p className="mt-1 text-sm leading-6 text-gray-600">
                     Choose from Existing addresses
                   </p>
-                  {/* <ul role="list">
+                  <ul role="list">
                     {user?.addresses?.map((address, index) => (
                       <li
                         key={index}
@@ -313,7 +315,7 @@ function Checkout() {
                         </div>
                       </li>
                     ))}
-                  </ul> */}
+                  </ul>
 
                   <div className="mt-10 space-y-10">
                     <fieldset required>
@@ -444,11 +446,11 @@ function Checkout() {
               <div className="border-t   border-gray-200 px-4 py-6 sm:px-6">
                 <div className="flex justify-between text-base font-medium text-gray-900">
                   <p>Subtotal</p>
-                  <p>$262.00</p>
+                  <p>$ {totalAmount}</p>
                 </div>
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                   <p>Total Item's in Cart</p>
-                  <p>{totalItem} items</p>
+                  <p>{totalItems} items</p>
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">
                   Shipping and taxes calculated at checkout.

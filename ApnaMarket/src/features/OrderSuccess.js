@@ -18,7 +18,7 @@ export default function OrderSuccess() {
   return (
     <>
       {!params.id && <Navigate to="/" replace={true} />}
-      <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8 h-screen">
         <div className="text-center">
           <p className="text-base font-semibold text-[rgba(223,27,51,255)]">
             Order Summary
@@ -30,7 +30,7 @@ export default function OrderSuccess() {
             <Lottie className="h-20 w-20" animationData={AnimationData} />
           </div>
           <p className="mt-6 text-base leading-7 text-gray-600">
-            Order Number #{params.id}
+            Order Number <span className="text-black"> #{params.id}</span>
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link to="/">

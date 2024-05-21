@@ -22,7 +22,7 @@ const ProductForm = () => {
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
   const selectedProducts = useSelector(selectProductById);
-  // console.log(selectedProducts);
+  console.log(selectedProducts);
   const {
     register,
     reset,
@@ -41,23 +41,23 @@ const ProductForm = () => {
 
   useEffect(() => {
     if (selectedProducts && params.id) {
-      setValue("title", selectedProducts[0].title);
-      setValue("brand", selectedProducts[0].brand);
-      setValue("category", selectedProducts[0].category);
-      setValue("description", selectedProducts[0].description);
-      setValue("price", selectedProducts[0].price);
-      setValue("discountPercentage", selectedProducts[0].discountPercentage);
-      setValue("stock", selectedProducts[0].stock);
-      setValue("thumbnail", selectedProducts[0].thumbnail);
-      setValue("image1", selectedProducts[0].images[0]);
-      setValue("image2", selectedProducts[0].images[1]);
-      setValue("image3", selectedProducts[0].images[2]);
-      setValue("image4", selectedProducts[0].images[3]);
+      setValue("title", selectedProducts.title);
+      setValue("brand", selectedProducts.brand);
+      setValue("category", selectedProducts.category);
+      setValue("description", selectedProducts.description);
+      setValue("price", selectedProducts.price);
+      setValue("discountPercentage", selectedProducts.discountPercentage);
+      setValue("stock", selectedProducts.stock);
+      setValue("thumbnail", selectedProducts.thumbnail);
+      setValue("image1", selectedProducts.images[0]);
+      setValue("image2", selectedProducts.images[1]);
+      setValue("image3", selectedProducts.images[2]);
+      setValue("image4", selectedProducts.images[3]);
     }
   }, [selectedProducts, setValue, params.id]);
 
   const handleDelete = () => {
-    const product = { ...selectedProducts[0] };
+    const product = { ...selectedProducts };
     product.deleted = true;
     dispatch(updateProductAsync(product));
   };
@@ -90,7 +90,7 @@ const ProductForm = () => {
           // console.log(params.id);
           // console.log(product);
           // console.log(selectedProducts[0].rating);
-          product.rating = selectedProducts[0].rating || 0;
+          product.rating = selectedProducts.rating || 0;
           dispatch(updateProductAsync(product));
           reset();
         } else {
@@ -504,7 +504,7 @@ const ProductForm = () => {
             </button>
 
             {/* delete */}
-            {selectedProducts && !selectedProducts[0].deleted && (
+            {selectedProducts && !selectedProducts.deleted && (
               <button
                 onClick={(e) => {
                   e.preventDefault();

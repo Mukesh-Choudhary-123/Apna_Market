@@ -29,6 +29,7 @@ import AdminHome from "./pages/AdminHome";
 import AdminProductDetailPage from "./pages/AdminProductDetailPage";
 import AdminProductFormPage from "./pages/AdminProductFormPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
+import ProductListCategorySectionPage from "./pages/ProductListCategorySectionPage";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,14 @@ const router = createBrowserRouter([
     element: (
       <Protected>
         <CheckoutPage></CheckoutPage>
+      </Protected>
+    ),
+  },
+  {
+    path: "/category-productlist",
+    element: (
+      <Protected>
+        <ProductListCategorySectionPage></ProductListCategorySectionPage>
       </Protected>
     ),
   },

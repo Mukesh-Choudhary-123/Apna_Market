@@ -206,10 +206,11 @@ const Footer = () => {
                 Subscribe
               </button>
             </form> */}
-            <img
+
+            {/* <img
               className="mt-6"
               src="https://www.udyogmart.com/wp-content/uploads/2020/01/ezgif.com-video-to-gif.gif"
-            />
+            /> */}
           </div>
         </div>
         <hr className="mt-16 mb-10 border-gray-200" />

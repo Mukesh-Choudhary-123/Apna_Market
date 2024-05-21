@@ -27,10 +27,10 @@ export function fetchProductsByFilters(filter, pagination) {
   });
 }
 
-export function fetchBestCategories(queryString) {
+export function fetchBestCategories(category) {
   return new Promise(async (resolve) => {
     const response = await fetch(
-      "http://localhost:8080/products?category=" + queryString
+      "http://localhost:8080/products?category=" + category
     );
     const data = await response.json();
     const totalItems = response.headers.get("X-Total-Count");

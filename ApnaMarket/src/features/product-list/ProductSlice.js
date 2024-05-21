@@ -38,8 +38,8 @@ export const fetchProductsByFiltersAsync = createAsyncThunk(
 
 export const fetchBestCategoriesAsync = createAsyncThunk(
   "product/fetchBestCategories",
-  async (queryString) => {
-    const response = await fetchBestCategories(queryString);
+  async (category) => {
+    const response = await fetchBestCategories(category);
     return response.data;
   }
 );
