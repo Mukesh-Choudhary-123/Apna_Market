@@ -20,7 +20,7 @@ const AdminOrders = () => {
 
   const orders = useSelector(selectOrders);
   const totalOrders = useSelector(selectTotalOrder);
-
+  console.log(orders);
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState({});
 
@@ -83,13 +83,13 @@ const AdminOrders = () => {
   }, [dispatch, page, sort]);
 
   return orders ? (
-    <div className="overflow-x-auto">
-      <div className=" bg-gray-100 flex items-center justify-center  font-sans overflow-hidden">
+    <div className="overflow-x-auto ">
+      <div className=" min-w-screen min-h-screen  bg-gray-100 flex items-center justify-center  font-sans overflow-hidden">
         <div className="w-full ">
-          <div className="bg-white shadow-md rounded my-6">
-            <table className="min-w-max w-full table-auto ">
+          <div className="bg-white shadow-md  rounded my-6">
+            <table className="min-w-max w-full  table-auto ">
               <thead>
-                <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                <tr className="bg-gray-200  text-gray-600 uppercase text-sm leading-normal">
                   <th
                     className="py-3 px-6 text-left cursor-pointer"
                     onClick={(e) =>
@@ -115,7 +115,7 @@ const AdminOrders = () => {
               </thead>
 
               <tbody className="text-gray-600 text-sm font-light">
-                {orders?.data?.map((order) => (
+                {orders?.map((order) => (
                   <tr className="border-b border-gray-200 hover:bg-gray-100">
                     {/* Orders Id */}
                     <td className="py-3 px-6 text-left whitespace-nowrap">
@@ -132,11 +132,12 @@ const AdminOrders = () => {
                           <div className="ml-6 ">
                             <img
                               className="w-20 h-20 "
-                              src={item[0].thumbnail}
+                              src={item.product.thumbnail}
                             />
                           </div>
                           <div className="text-black mt-2 mb-2">
-                            {item[0].title} ~ ${discountedPrice(item[0])}
+                            {item.product.title} ~ $
+                            {discountedPrice(item.product)}
                           </div>
                         </>
                       ))}
@@ -208,10 +209,10 @@ const AdminOrders = () => {
                       ) : (
                         <span
                           className={`${chooseColor(
-                            order.state
+                            order.status
                           )} py-1 px-3 rounded-full text-xs`}
                         >
-                          {order.state}
+                          {order.status}
                         </span>
                       )}
                     </td>
@@ -244,8 +245,8 @@ const AdminOrders = () => {
         page={page}
         setPage={setPage}
         handlePage={handlePage}
-        // totalItems={totalOrders}
-        totalItems={14}
+        totalItems={totalOrders}
+
         //TODO
       ></Pagination>
     </div>

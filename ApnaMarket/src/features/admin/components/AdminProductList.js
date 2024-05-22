@@ -98,7 +98,7 @@ export default function AdminProductList() {
 
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
-    dispatch(fetchProductsByFiltersAsync({ filter, pagination }));
+    dispatch(fetchProductsByFiltersAsync({ filter, pagination, admin: true }));
   }, [dispatch, filter, page]);
 
   return (
@@ -449,6 +449,13 @@ export default function AdminProductList() {
                                     </p>
                                   )}
                                 </div>
+                                {product.stock <= 0 && (
+                                  <div>
+                                    <p className="text-red-600 text-center">
+                                      ( Out of Stock )
+                                    </p>
+                                  </div>
+                                )}
                               </div>
                             ))}
                           </div>

@@ -14,6 +14,7 @@ import { selectItem } from "../cart/CartSlice";
 import { selectLoggedInUser } from "../auth/AuthSlice";
 import ProfileLogo from "./Profile.png";
 import { Tooltip } from "react-tooltip";
+import { selectUserInfo } from "../user/UserSlice";
 
 const user = {
   name: "Tom Cook",
@@ -39,11 +40,10 @@ function classNames(...classes) {
 
 const Navbar = ({ children }) => {
   const items = useSelector(selectItem);
-  const user = useSelector(selectLoggedInUser);
-  console.log(user);
+  const userInfo = useSelector(selectUserInfo);
+  console.log(userInfo);
   return (
     <div>
-      {" "}
       <div className="min-h-full">
         {/* gray-800 */}
         <Disclosure
@@ -74,7 +74,7 @@ const Navbar = ({ children }) => {
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) =>
-                          item[user.role] ? (
+                          item[userInfo?.role] ? (
                             <Link
                               key={item.name}
                               to={item.link}
@@ -219,16 +219,16 @@ const Navbar = ({ children }) => {
                     <div className="flex-shrink-0">
                       <img
                         className="h-10 w-10 rounded-full"
-                        src={user.imageUrl}
+                        src={userInfo?.imageUrl}
                         alt=""
                       />
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">
-                        {user.name}
+                        {userInfo?.name}
                       </div>
                       <div className="text-sm font-medium leading-none text-gray-400">
-                        {user.email}
+                        {userInfo?.email}
                       </div>
                     </div>
                     <Link to="/cart">

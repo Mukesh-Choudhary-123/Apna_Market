@@ -161,13 +161,11 @@ const router = createBrowserRouter([
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
-  console.log(user);
 
   useEffect(() => {
     if (user) {
-      console.log("I am here again 2");
-      dispatch(fetchItemByUserIdAsync(user.id));
-      dispatch(fetchLoggedInUserAsync(user.id));
+      dispatch(fetchItemByUserIdAsync());
+      dispatch(fetchLoggedInUserAsync());
     }
   }, [dispatch, user]);
 
