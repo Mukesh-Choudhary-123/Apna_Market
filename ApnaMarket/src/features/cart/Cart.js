@@ -11,6 +11,9 @@ import {
   selectItem,
   updateItemAsync,
 } from "./CartSlice";
+import Lottie from "lottie-react";
+import AminationData from "./CartEmpty.json";
+
 export default function Cart() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(true);
@@ -24,10 +27,11 @@ export default function Cart() {
 
   const item = items;
 
-  const totalAmount = items.reduce(
-    (amount, item) => discountedPrice(item.product) * item.quantity + amount,
-    0
-  );
+  const totalAmount =
+    items.reduce(
+      (amount, item) => discountedPrice(item.product) * item.quantity + amount,
+      0
+    ) || 10;
 
   console.log(totalAmount);
   const totalItem = item.reduce((total, item) => item.quantity + total, 0);
@@ -49,7 +53,12 @@ export default function Cart() {
   return (
     <>
       {!item.length ? (
-        <>Abhi Tak Apne Kuch Bhi Cart me Add nahi kiya hai </>
+        <div className="w-screen h-screen">
+          <div className="justify-center flex">
+            <Lottie animationData={AminationData} className="h-72 w-72 " />
+          </div>
+          <h1 className="text-center text-4xl">Cart is Empty</h1>
+        </div>
       ) : (
         <>
           <div className="mx-12 mb-12 mt-12 py-4 max-w-7xl px-6  sm:px-6 lg:px-20 bg-white">

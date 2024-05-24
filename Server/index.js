@@ -8,8 +8,7 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const crypto = require("crypto");
-const JwtStrategy = require("passport-jwt").Strategy;
-const ExtractJwt = require("passport-jwt").ExtractJwt;
+const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
 const cookieParser = require("cookie-parser");
 const productsRouter = require("./routes/Products");
 const categoriesRouter = require("./routes/Categories");
@@ -35,6 +34,7 @@ server.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: false,
+    cookie: { secure: false, httpOnly: true, sameSite: "lax" },
     // store: new SQLiteStore({ db: "sessions.db", dir: "./var/db" }),
   })
 );
@@ -62,10 +62,14 @@ passport.use(
     done
   ) {
     try {
+      console.log("I AM IN THE LOCAL STRATEGY");
+      console.log("Email : ", email);
+      console.log("Password : ", password);
       const user = await User.findOne({ email: email }).exec();
       if (!user) {
         done(null, false, { message: "invalid credentials" });
       }
+      console.log("USER ___ :", user);
       crypto.pbkdf2(
         password,
         user.salt,
@@ -78,6 +82,7 @@ passport.use(
           }
           const token = jwt.sign(sanitizeUser(user), SECRET_KEY);
           done(null, { token });
+          console.log("LocalStrategy token: ", token);
         }
       );
     } catch (err) {
@@ -85,17 +90,24 @@ passport.use(
     }
   })
 );
+
 passport.use(
   "jwt",
   new JwtStrategy(opts, async function (jwt_payload, done) {
+    console.log("jwt_payload -->", jwt_payload.id);
     try {
-      const user = await User.findOne({ id: jwt_payload.sub });
+      console.log("I AM IN THE JWT STRATEGY");
+
+      const user = await User.findById(jwt_payload.id);
       if (user) {
+        console.log("User found:", user);
         return done(null, sanitizeUser(user));
       } else {
+        console.log("YOU ARE NOT USER !!");
         return done(null, false);
       }
     } catch (err) {
+      console.error("Error during JWT authentication:", err);
       return done(err, false);
     }
   })
@@ -108,16 +120,16 @@ passport.serializeUser(function (user, cd) {
   });
 });
 
-// this create session variable req.user on begin called from callback
-passport.serializeUser(function (user, cd) {
-  process.nextTick(function () {
-    return cd(null, {
-      id: user.id,
-      username: user.username,
-      picture: user.picture,
-    });
-  });
-});
+// // this create session variable req.user on begin called from callback
+// passport.serializeUser(function (user, cd) {
+//   process.nextTick(function () {
+//     return cd(null, {
+//       id: user.id,
+//       username: user.username,
+//       picture: user.picture,
+//     });
+//   });
+// });
 
 // this changes session variable req.user when called from authenticated request
 passport.deserializeUser(function (user, cd) {
@@ -133,9 +145,9 @@ async function main() {
   console.log("Database connection successfully");
 }
 
-server.get("/", (req, res) => {
-  res.json({ status: "success" });
-});
+// server.get("/", (req, res) => {
+//   res.json({ status: "success" });
+// });
 
 server.listen(port, () => {
   console.log("server listening on port " + port);

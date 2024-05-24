@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   status: "idle",
-  // cart: [],
+  cart: [],
   item: [],
 };
 

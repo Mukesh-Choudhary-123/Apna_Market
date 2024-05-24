@@ -35,8 +35,8 @@ const AdminOrders = () => {
   };
 
   const handleUpdate = (e, order) => {
-    const updateOrder = { ...order, state: e.target.value };
-    console.log(updateOrder);
+    const updateOrder = { ...order, status: e.target.value };
+    console.log(" updateOrder --> ", updateOrder);
     dispatch(updateOrderAsync(updateOrder));
     setEditableOrderId(-1);
   };

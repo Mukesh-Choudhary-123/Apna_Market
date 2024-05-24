@@ -14,9 +14,9 @@ function Home() {
         <Promo></Promo>
         <CategorySection></CategorySection>
         <ProductList></ProductList>
+        {/* <Testimonials /> */}
+        <Footer />
       </Navbar>
-      {/* <Testimonials /> */}
-      <Footer></Footer>
     </div>
   );
 }

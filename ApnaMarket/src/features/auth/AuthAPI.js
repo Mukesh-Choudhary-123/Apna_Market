@@ -21,7 +21,7 @@ export function checkUser(loginInfo) {
         const data = await response.json();
         resolve({ data });
       } else {
-        const error = await response.json();
+        const error = await response.text();
         reject(error);
       }
     } catch (error) {
@@ -30,7 +30,7 @@ export function checkUser(loginInfo) {
   });
 }
 
-export function signOut(userId) {
+export function signOut() {
   return new Promise(async (resolve) => {
     resolve({ data: "Sign-out Successfully" });
   });

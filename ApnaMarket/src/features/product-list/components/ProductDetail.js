@@ -48,16 +48,15 @@ export default function ProductDetail() {
   const items = useSelector(selectItem);
   const status = useSelector(selectProductListStatus);
 
-  console.log(product);
-
   const dispatch = useDispatch();
   const param = useParams();
 
+  console.log(product);
+  console.log(items);
+
   const handleCart = (e) => {
     e.preventDefault();
-    // console.log(product);
-    // console.log(items);
-    if (items.findIndex((item) => item.product.id === product.id) < 0) {
+    if (items.findIndex((item) => item.product === product.id) < 0) {
       const newItem = {
         product: product.id,
         quantity: 1,

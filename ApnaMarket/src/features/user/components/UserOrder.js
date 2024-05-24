@@ -12,34 +12,33 @@ import Footer from "../../common/Footer";
 
 export default function UserOrder() {
   const dispatch = useDispatch();
-  const userInfo = useSelector(selectUserInfo);
   const orders = useSelector(selectUserOrder);
   const status = useSelector(selectOrderStatus);
 
   useEffect(() => {
-    dispatch(fetchLoggedInUserOrderAsync(userInfo.id));
-  }, [dispatch, userInfo.id]);
+    dispatch(fetchLoggedInUserOrderAsync());
+  }, [dispatch]);
+
+  console.log(orders);
 
   return (
     <>
-      {!orders.length ? (
-        <h1 className="text-center"> Abhi tak kuch order hi nahi kara</h1>
-      ) : (
-        <div>
-          <div className="mx-12 mb-12 mt-1 py-4 max-w-7xl px-6  sm:px-6 lg:px-20 bg-white">
-            <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 mb-5">
-              My Order
-            </h1>
-            {status === "loading" ? (
-              <InfinitySpin
-                visible={true}
-                width="200"
-                color="#df1b33"
-                ariaLabel="infinity-spin-loading"
-                className="align-center"
-              />
-            ) : null}
-            {orders.map((order) => (
+      <div>
+        <div className="mx-12 mb-12 mt-1 py-4 max-w-7xl px-6  sm:px-6 lg:px-20 bg-white">
+          <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 mb-5">
+            My Order
+          </h1>
+          {status === "loading" ? (
+            <InfinitySpin
+              visible={true}
+              width="200"
+              color="#df1b33"
+              ariaLabel="infinity-spin-loading"
+              className="align-center"
+            />
+          ) : null}
+          {orders &&
+            orders?.map((order) => (
               <div className="border border-gray-300 mt-2 py-3 px-3">
                 <p className="mt-0.5 text-sm text-gray-500">
                   Order id : #{order.id}
@@ -152,9 +151,9 @@ export default function UserOrder() {
                 </div>
               </div>
             ))}
-          </div>
         </div>
-      )}
+      </div>
+
       <Footer />
     </>
   );

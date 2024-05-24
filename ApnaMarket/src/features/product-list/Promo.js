@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Promo.css";
 
 function Promo() {
-  const colors = ["#0088FE", "#00C49F", "#FFBB28"];
   const images = [
     "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg",
     "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg",
@@ -10,6 +9,22 @@ function Promo() {
     "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg",
     "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg",
     "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg",
+  ];
+  const images2 = [
+    "https://cdn.dummyjson.com/product-images/36/1.jpg",
+    "https://cdn.dummyjson.com/product-images/36/3.webp",
+    "https://cdn.dummyjson.com/product-images/36/4.jpg",
+    "https://cdn.dummyjson.com/product-images/36/2.webp",
+    "https://cdn.dummyjson.com/product-images/39/thumbnail.jpg",
+    "https://cdn.dummyjson.com/product-images/40/thumbnail.jpg",
+  ];
+  const images3 = [
+    "https://cdn.dummyjson.com/product-images/90/4.jpg",
+    "https://cdn.dummyjson.com/product-images/81/1.jpg",
+    "https://cdn.dummyjson.com/product-images/96/1.jpg",
+    "https://cdn.dummyjson.com/product-images/98/1.jpg",
+    "https://cdn.dummyjson.com/product-images/89/2.jpg",
+    "https://cdn.dummyjson.com/product-images/99/1.jpg",
   ];
   const delay = 2500;
   const [index, setIndex] = useState(0);
@@ -35,6 +50,7 @@ function Promo() {
       resetTimeout();
     };
   }, [index]);
+
   return (
     <>
       {" "}
@@ -57,9 +73,10 @@ function Promo() {
                   aria-hidden="true"
                   className="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
                 >
-                  <div className="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
+                  <div className="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-72 lg:-translate-y-1/2 lg:translate-x-5">
                     <div className="flex items-center space-x-5 lg:space-x-5">
                       <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-4">
+                        {/* 64 */}
                         <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100 slide-container">
                           <div className="slideshow">
                             <div
@@ -78,52 +95,121 @@ function Promo() {
                             </div>
                           </div>
                         </div>
-
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
+                        {/* 64 */}
+                        <div className="h-44 w-44 overflow-hidden rounded-lg">
+                          <div className="slideshow">
+                            <div
+                              className="slideshowSlider2"
+                              style={{
+                                transform: `translate3d(${
+                                  -index * 100
+                                }%, 0, 0)`,
+                              }}
+                            >
+                              {images2.map((url, index) => (
+                                <div className="slide" key={index}>
+                                  <img src={url} alt="" />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-4">
-                        <div className="h-44 mt-20 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src="https://m.media-amazon.com/images/G/31/img21/Pharmacy/BAU/2024/Rewamp_R2_24_SBC._CB582764466_.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
+                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-4 ">
+                        <div className="h-44 mt-20 w-44 overflow-hidden rounded-lg ">
+                          <div className="slideshow">
+                            <div
+                              className="slideshowSlider"
+                              style={{
+                                transform: `translate3d(${
+                                  -index * 100
+                                }%, 0, 0)`,
+                              }}
+                            >
+                              {images3.map((url, index) => (
+                                <div className="slide" key={index}>
+                                  <img src={url} alt="" />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
+                        {/* 64 */}
+                        <div className="h-44 w-44 overflow-hidden rounded-lg">
+                          <div className="slideshow">
+                            <div
+                              className="slideshowSlider"
+                              style={{
+                                transform: `translate3d(${
+                                  -index * 100
+                                }%, 0, 0)`,
+                              }}
+                            >
+                              {images.map((url, index) => (
+                                <div className="slide" key={index}>
+                                  <img src={url} alt="" />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                         <div className="h-44 w-44 mb-24 overflow-hidden rounded-lg">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
+                          <div className="slideshow">
+                            <div
+                              className="slideshowSlider"
+                              style={{
+                                transform: `translate3d(${
+                                  -index * 100
+                                }%, 0, 0)`,
+                              }}
+                            >
+                              {images.map((url, index) => (
+                                <div className="slide" key={index}>
+                                  <img src={url} alt="" />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-4">
+                        {/* 64 */}
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
+                          <div className="slideshow">
+                            <div
+                              className="slideshowSlider"
+                              style={{
+                                transform: `translate3d(${
+                                  -index * 100
+                                }%, 0, 0)`,
+                              }}
+                            >
+                              {images.map((url, index) => (
+                                <div className="slide" key={index}>
+                                  <img src={url} alt="" />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
+                        {/* 64 */}
+                        <div className="h-44 w-44 overflow-hidden rounded-lg">
+                          <div className="slideshow">
+                            <div
+                              className="slideshowSlider"
+                              style={{
+                                transform: `translate3d(${
+                                  -index * 100
+                                }%, 0, 0)`,
+                              }}
+                            >
+                              {images.map((url, index) => (
+                                <div className="slide" key={index}>
+                                  <img src={url} alt="" />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

@@ -28,13 +28,10 @@ export const checkUserAsync = createAsyncThunk(
   }
 );
 
-export const signOutAsync = createAsyncThunk(
-  "users/signOut",
-  async (loginInfo) => {
-    const response = await signOut(loginInfo);
-    return response.data;
-  }
-);
+export const signOutAsync = createAsyncThunk("users/signOut", async () => {
+  const response = await signOut();
+  return response.data;
+});
 
 export const authSlice = createSlice({
   name: "user",
@@ -72,6 +69,7 @@ export const authSlice = createSlice({
       .addCase(signOutAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.loggedInUserToken = null;
+        console.log("loggedInUserToken After signOutAsync ");
       });
   },
 });

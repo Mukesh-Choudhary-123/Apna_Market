@@ -9,12 +9,14 @@ import {
 } from "../AuthSlice";
 import { Link, Navigate } from "react-router-dom";
 import logo from "./logo.png";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const count = useSelector(selectCount);
   const error = useSelector(selectError);
   const user = useSelector(selectLoggedInUser);
   const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -101,7 +103,12 @@ export default function Login() {
                   <p className="text-red-500">{errors.password.message}</p>
                 )}
               </div>
-              {error && <p className="text-red-500">{error.message}</p>}
+              {/* {error && toast.error("Something went wrong")} */}
+              {error && (
+                <p className="text-red-500 pt-1">
+                  {error || "Something Went Wrong"}
+                </p>
+              )}
             </div>
 
             <div>

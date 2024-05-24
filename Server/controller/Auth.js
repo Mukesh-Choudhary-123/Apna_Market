@@ -1,9 +1,7 @@
-const { Http2ServerRequest } = require("http2");
 const { sanitizeUser } = require("../Services/common");
 const { User } = require("../model/User");
 const crypto = require("crypto");
-const JwtStrategy = require("passport-jwt").Strategy;
-const ExtractJwt = require("passport-jwt").ExtractJwt;
+
 const SECRET_KEY = "SECRET_KEY";
 const jwt = require("jsonwebtoken");
 
@@ -44,6 +42,7 @@ exports.createUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
+  console.log("req.user.token ==", req.user.token);
   res
     .cookie("jwt", req.user.token, {
       expires: new Date(Date.now() + 3600000),
