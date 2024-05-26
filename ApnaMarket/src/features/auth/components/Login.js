@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  checkUserAsync,
+  checkAuthAsync,
   selectCount,
   selectError,
   selectLoggedInUser,
@@ -42,7 +42,7 @@ export default function Login() {
             onSubmit={handleSubmit((onSubmit) => {
               console.log(onSubmit);
               dispatch(
-                checkUserAsync({
+                checkAuthAsync({
                   email: onSubmit.email,
                   password: onSubmit.password,
                 })

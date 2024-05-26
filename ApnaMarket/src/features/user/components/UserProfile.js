@@ -55,7 +55,7 @@ export default function UserProfile() {
 
   return (
     <div>
-      <div className="mx-12 mb-12 mt-1 py-4 max-w-7xl px-6  sm:px-6 lg:px-20 bg-white">
+      <div className="mx-12 mb-12 mt-1 py-4  px-6  sm:px-6 lg:px-20 bg-white">
         <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 mb-5">
           <PersonIcon sx={{ height: "2.5rem", width: "2.5rem" }} /> My Profile
         </h1>

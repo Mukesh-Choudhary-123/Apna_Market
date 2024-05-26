@@ -81,7 +81,7 @@ passport.use(
             return done({ message: "invalid credentials" });
           }
           const token = jwt.sign(sanitizeUser(user), SECRET_KEY);
-          done(null, { token });
+          done(null, { id: user.id, role: user.role });
           console.log("LocalStrategy token: ", token);
         }
       );
@@ -136,6 +136,35 @@ passport.deserializeUser(function (user, cd) {
   process.nextTick(function () {
     return cd(null, user);
   });
+});
+
+// Payments
+
+// This is your test secret API key.
+const stripe = require("stripe")(
+  "sk_test_51PKIOnSEQs1HpBFMUBsZK1cTSa7fPW4fedMbelEzW8aMzO4bdD8lK4xhZgzTI9dwbi5M8H2ch8dChBCvjV7riwEP00ddknnS1i"
+);
+
+server.post("/create-payment-intent", async (req, res) => {
+  try {
+    const { totalAmount } = req.body;
+
+    // Additional metadata for export transactions (if required)
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: totalAmount * 100, // Convert amount to the smallest currency unit
+      currency: "inr",
+      automatic_payment_methods: { enabled: true },
+      metadata: {
+        business_name: "Your Business Name", // Add any additional metadata required by Stripe for compliance
+        export_reason: "Selling Goods/Services", // Example: "Selling Goods/Services"
+      },
+    });
+
+    res.send({ clientSecret: paymentIntent.client_secret });
+  } catch (error) {
+    console.error("Error creating payment intent:", error);
+    res.status(500).send({ error: error.message });
+  }
 });
 
 main().catch((err) => console.log(err));

@@ -24,7 +24,7 @@ export default function UserOrder() {
   return (
     <>
       <div>
-        <div className="mx-12 mb-12 mt-1 py-4 max-w-7xl px-6  sm:px-6 lg:px-20 bg-white">
+        <div className="mx-12 mb-12 mt-1 py-4  px-6  sm:px-6 lg:px-20 bg-white">
           <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 mb-5">
             My Order
           </h1>
@@ -45,7 +45,7 @@ export default function UserOrder() {
                 </p>
                 <p className="mt-0.5 mb-2 text-sm text-gray-700">
                   Order Status :
-                  <span className="text-red-500">{order.state}</span>
+                  <span className="text-red-500"> {order.status}</span>
                 </p>
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flow-root">

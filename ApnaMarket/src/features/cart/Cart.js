@@ -53,7 +53,7 @@ export default function Cart() {
   return (
     <>
       {!item.length ? (
-        <div className="w-screen h-screen">
+        <div className="">
           <div className="justify-center flex">
             <Lottie animationData={AminationData} className="h-72 w-72 " />
           </div>
@@ -61,7 +61,7 @@ export default function Cart() {
         </div>
       ) : (
         <>
-          <div className="mx-12 mb-12 mt-12 py-4 max-w-7xl px-6  sm:px-6 lg:px-20 bg-white">
+          <div className="  mx-12 mb-12 mt-12 py-4  px-6  sm:px-6 lg:px-20 bg-white">
             <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 mb-5">
               Cart
             </h1>
