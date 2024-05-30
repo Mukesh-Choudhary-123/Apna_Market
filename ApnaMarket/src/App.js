@@ -35,10 +35,15 @@ import AdminProductFormPage from "./pages/AdminProductFormPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
 import ProductListCategorySectionPage from "./pages/ProductListCategorySectionPage";
 import StripeCheckout from "./pages/StripeCheckout";
+import IntroPage from "./pages/IntroPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <IntroPage></IntroPage>,
+  },
+  {
+    path: "/home",
     element: (
       <Protected>
         <Home></Home>
@@ -78,7 +83,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/category-productlist",
+    path: "/home/category-productlist",
     element: (
       <Protected>
         <ProductListCategorySectionPage></ProductListCategorySectionPage>

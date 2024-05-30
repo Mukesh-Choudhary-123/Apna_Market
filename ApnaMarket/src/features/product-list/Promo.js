@@ -54,7 +54,7 @@ function Promo() {
   return (
     <>
       {" "}
-      <div className="relative overflow-hidden bg-gradient-to-l from-[rgba(223,27,51,255)] via-[#d25252] to-gray-300">
+      <div className="relative overflow-hidden bg-[#F2F4F6]">
         <div className="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
           <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
             <div className="sm:max-w-lg">
@@ -216,12 +216,12 @@ function Promo() {
                   </div>
                 </div>
 
-                <a
+                {/* <a
                   href="#"
                   className="inline-block rounded-md border border-transparent bg-[rgba(223,27,51,255)] px-8 py-3 text-center font-medium text-white  hover:bg-[#ef4444]"
                 >
                   Shop Collection
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

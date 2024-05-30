@@ -17,7 +17,7 @@ export default function OrderSuccess() {
   }, [dispatch]);
   return (
     <>
-      {!params.id && <Navigate to="/" replace={true} />}
+      {!params.id && <Navigate to="/home" replace={true} />}
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8 h-screen">
         <div className="text-center">
           <p className="text-base font-semibold text-[rgba(223,27,51,255)]">

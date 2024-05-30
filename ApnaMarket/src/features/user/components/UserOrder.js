@@ -24,8 +24,8 @@ export default function UserOrder() {
   return (
     <>
       <div>
-        <div className="mx-12 mb-12 mt-1 py-4  px-6  sm:px-6 lg:px-20 bg-white">
-          <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 mb-5">
+        <div className="lg:mx-12 mb-12 mt-1 py-4  px-6  sm:px-6 lg:px-20 ">
+          <h1 className="text-center lg:text-4xl md:text-3xl sm:text-3xl  text-2xl font-bold tracking-tight text-gray-900 mb-5">
             My Order
           </h1>
           {status === "loading" ? (
@@ -56,7 +56,7 @@ export default function UserOrder() {
                       >
                         {order.items.map((item) => (
                           <li key={item.id} className="flex py-6">
-                            <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                            <div className="h-24 w-24 flex-shrink-0 overflow-hidden ">
                               <img
                                 src={item.product.thumbnail}
                                 alt={item.product.title}
@@ -67,10 +67,12 @@ export default function UserOrder() {
                             <div className="ml-4 flex flex-1 flex-col">
                               <div>
                                 <div className="flex justify-between text-base font-medium text-gray-900">
-                                  <h3>
+                                  <h3 className="text-sm  lg:text-xl md:text-sm">
                                     <a href={item.href}>{item.product.title}</a>
                                   </h3>
-                                  <p className="ml-4">$ {item.product.price}</p>
+                                  <p className="ml-4 text-xs lg:text-xl md:text-sm">
+                                    ${item.product.price}
+                                  </p>
                                 </div>
                                 <p className="mt-1 text-sm text-gray-500">
                                   {item.product.brand}
@@ -108,7 +110,7 @@ export default function UserOrder() {
                 <p className="mt-0.5 text-sm text-gray-500">
                   Shipping Address :
                 </p>
-                <div className="flex justify-between gap-x-6 mt-2 py-5 px-4 border-solid border-2 border-gray-200">
+                <div className="lg:flex md:flex sm:flex justify-between gap-x-6 mt-2 py-5 px-4 border-solid border-2 border-gray-200">
                   <div className="flex min-w-0 gap-x-4">
                     <div className="min-w-0 flex-auto">
                       <p className="text-sm font-semibold leading-6 text-gray-900">
@@ -128,7 +130,7 @@ export default function UserOrder() {
                       </p>
                     </div>
                   </div>
-                  <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                  <div className=" shrink-0 sm:flex sm:flex-col sm:items-end ">
                     <p className="text-sm leading-6 text-gray-800">
                       <span className="text-sm font-semibold leading-6 text-gray-900">
                         Phone on :{" "}

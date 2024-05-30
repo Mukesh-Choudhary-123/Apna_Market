@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const server = express();
@@ -21,17 +22,17 @@ const { User } = require("./model/User");
 const { isAuth, sanitizeUser, cookieExtractor } = require("./Services/common");
 
 // Jwt OPTIONS
-const SECRET_KEY = "SECRET_KEY";
+
 const opts = {};
 opts.jwtFromRequest = cookieExtractor;
-opts.secretOrKey = SECRET_KEY;
+opts.secretOrKey = process.env.JWT_SECRET_KEY;
 
 //middleware
 server.use(express.static("build"));
 server.use(cookieParser());
 server.use(
   session({
-    secret: "keyboard cat",
+    secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false, httpOnly: true, sameSite: "lax" },
@@ -44,6 +45,7 @@ server.use(
     exposedHeaders: ["X-Total-Count"],
   })
 );
+server.use(express.raw({ type: "application/json" }));
 server.use(express.json()); // to parse req.body
 server.use("/products", isAuth(), productsRouter.router);
 server.use("/categories", isAuth(), categoriesRouter.router);
@@ -80,7 +82,10 @@ passport.use(
           if (!crypto.timingSafeEqual(user.password, hashedPassword)) {
             return done({ message: "invalid credentials" });
           }
-          const token = jwt.sign(sanitizeUser(user), SECRET_KEY);
+          const token = jwt.sign(
+            sanitizeUser(user),
+            process.env.JWT_SECRET_KEY
+          );
           done(null, { id: user.id, role: user.role });
           console.log("LocalStrategy token: ", token);
         }
@@ -141,36 +146,56 @@ passport.deserializeUser(function (user, cd) {
 // Payments
 
 // This is your test secret API key.
-const stripe = require("stripe")(
-  "sk_test_51PKIOnSEQs1HpBFMUBsZK1cTSa7fPW4fedMbelEzW8aMzO4bdD8lK4xhZgzTI9dwbi5M8H2ch8dChBCvjV7riwEP00ddknnS1i"
-);
+const stripe = require("stripe")(process.env.STRIPE_SERVER_KEY);
 
 server.post("/create-payment-intent", async (req, res) => {
-  try {
-    const { totalAmount } = req.body;
+  const { totalAmount } = req.body;
 
-    // Additional metadata for export transactions (if required)
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: totalAmount * 100, // Convert amount to the smallest currency unit
-      currency: "inr",
-      automatic_payment_methods: { enabled: true },
-      metadata: {
-        business_name: "Your Business Name", // Add any additional metadata required by Stripe for compliance
-        export_reason: "Selling Goods/Services", // Example: "Selling Goods/Services"
-      },
-    });
+  // Additional metadata for export transactions (if required)
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: totalAmount * 100, // Convert amount to the smallest currency unit
+    currency: "inr",
+    // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
+    automatic_payment_methods: {
+      enabled: true,
+    },
+  });
 
-    res.send({ clientSecret: paymentIntent.client_secret });
-  } catch (error) {
-    console.error("Error creating payment intent:", error);
-    res.status(500).send({ error: error.message });
-  }
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+  });
 });
+
+//Webhook
+const endpointSecret = process.env.ENDPOINT_SECRET;
+
+server.post(
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  (request, response) => {
+    const sig = request.headers["stripe-signature"];
+    console.log("Web- Hook");
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+    } catch (err) {
+      response.status(400).send(`Webhook Error: ${err.message}`);
+      return;
+    }
+
+    // Handle the event
+    console.log(`Unhandled event type ${event.type}`);
+
+    // Return a 200 response to acknowledge receipt of the event
+    response.send();
+  }
+);
 
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/ApnaMarket");
+  await mongoose.connect(process.env.MONGODB_URL);
   console.log("Database connection successfully");
 }
 
@@ -178,6 +203,6 @@ async function main() {
 //   res.json({ status: "success" });
 // });
 
-server.listen(port, () => {
-  console.log("server listening on port " + port);
+server.listen(process.env.PORT, () => {
+  console.log("server listening on port " + process.env.PORT);
 });

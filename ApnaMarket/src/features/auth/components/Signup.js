@@ -17,7 +17,7 @@ export default function Signup() {
   return (
     <>
       <div>
-        {user && <Navigate to="/" replace={true}></Navigate>}
+        {user && <Navigate to="/home" replace={true}></Navigate>}
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gray-100 h-screen">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img className="mx-auto h-10 w-auto" src={logo} alt="Apna Market" />

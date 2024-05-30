@@ -61,8 +61,8 @@ export default function Cart() {
         </div>
       ) : (
         <>
-          <div className="  mx-12 mb-12 mt-12 py-4  px-6  sm:px-6 lg:px-20 bg-white">
-            <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 mb-5">
+          <div className="   mb-12  py-4  sm:px-6 lg:px-20 ">
+            <h1 className="text-center lg:text-4xl md:text-3xl sm:text-3xl  text-2xl font-bold tracking-tight text-gray-900 mb-5">
               Cart
             </h1>
             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">

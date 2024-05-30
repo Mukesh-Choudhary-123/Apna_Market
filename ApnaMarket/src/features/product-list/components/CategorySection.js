@@ -42,8 +42,8 @@ export default function CategorySection() {
               <Link
                 to={`category-productlist?category=${category.bestcategory}`}
               >
-                <div className="group relative  border-solid border-gray-400 border-2 p-2 rounded-full">
-                  <div className=" lg:h-60  aspect-h-1 aspect-w-1  overflow-hidden rounded-full bg-black lg:aspect-none group-hover:opacity-75 ">
+                <div className="group relative  border-solid border-[rgb(255,255,255)]  border-2 p-2 rounded-full">
+                  <div className=" lg:h-60  aspect-h-1 aspect-w-1  overflow-hidden rounded-full  lg:aspect-none group-hover:opacity-75 ">
                     <img
                       src={category.image}
                       alt={category.title}

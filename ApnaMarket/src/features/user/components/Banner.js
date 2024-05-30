@@ -1,8 +1,10 @@
 import { XMarkIcon } from "@heroicons/react/20/solid";
+import { Link } from "react-router-dom";
+import LOGO from "../../logo.png";
 
 export default function Banner() {
   return (
-    <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gradient-to-l from-[rgba(223,27,51,255)] via-[#d25252] to-gray-300 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+    <div className="relative isolate flex items-center justify-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
       <div
         className="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
         aria-hidden="true"
@@ -27,9 +29,10 @@ export default function Banner() {
           }}
         />
       </div>
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+      <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 ">
+        <img src={LOGO} className="h-6 sm:h-9 -mr-3" alt="Apna Market Logo" />
         <p className="text-sm leading-6 text-gray-900">
-          <strong className="font-semibold">GeneriCon 2023</strong>
+          <strong className="font-semibold">Apna Market 2024</strong>
           <svg
             viewBox="0 0 2 2"
             className="mx-2 inline h-0.5 w-0.5 fill-current"
@@ -37,23 +40,15 @@ export default function Banner() {
           >
             <circle cx={1} cy={1} r={1} />
           </svg>
-          Join us in Denver from June 7 – 9 to see what’s coming next.
+          Discover Great Deals Every Day at Apna Market – Your One-Stop Online
+          Shop!.
         </p>
-        <a
-          href="#"
-          className="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+        <Link
+          to={"/login"}
+          className="flex-none rounded-full bg-[rgba(223,27,51,255)] px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
         >
-          Register now <span aria-hidden="true">&rarr;</span>
-        </a>
-      </div>
-      <div className="flex flex-1 justify-end">
-        <button
-          type="button"
-          className="-m-3 p-3 focus-visible:outline-offset-[-4px]"
-        >
-          <span className="sr-only">Dismiss</span>
-          <XMarkIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
-        </button>
+          login now <span aria-hidden="true">&rarr;</span>
+        </Link>
       </div>
     </div>
   );

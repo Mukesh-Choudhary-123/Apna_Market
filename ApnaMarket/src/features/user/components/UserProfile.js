@@ -55,18 +55,18 @@ export default function UserProfile() {
 
   return (
     <div>
-      <div className="mx-12 mb-12 mt-1 py-4  px-6  sm:px-6 lg:px-20 bg-white">
-        <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 mb-5">
+      <div className="mb-12 mt-1 py-4  px-6  sm:px-6 lg:px-20 ">
+        <h1 className="text-center lg:text-4xl md:text-3xl sm:text-3xl  text-2xl font-bold tracking-tight text-gray-900 mb-5">
           <PersonIcon sx={{ height: "2.5rem", width: "2.5rem" }} /> My Profile
         </h1>
-        <h3 className=" text-2xl font-bold tracking-tight text-gray-600 mb-2">
+        <h3 className=" lg:text-2xl md:text-2xl sm:text-2xl  text-1xl font-bold tracking-tight text-gray-600 mb-2">
           Name : {userInfo?.name ? userInfo.name : "Guesst User"}
         </h3>
         <h3 className="tracking-tight text-gray-600 mb-2">
           Email : {userInfo?.email ? userInfo.email : "guesst123@hotlook.com"}
         </h3>
 
-        <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+        <div className="border-t border-gray-200  py-6 sm:px-6 lg:px-4 px-0">
           <button
             type="submit"
             onClick={(e) => {
@@ -414,8 +414,8 @@ export default function UserProfile() {
                   </form>
                 ) : null}
               </div>
-              <div className="flex justify-between gap-x-6 mt-2 py-5 px-4 border-solid border-2 border-gray-200">
-                <div className="flex min-w-0 gap-x-4">
+              <div className="lg:flex md:flex sm:flex  justify-between gap-x-6 mt-2 py-5 px-4 border-solid border-2 rounded-xl border-gray-200">
+                <div className=" min-w-0 gap-x-4">
                   <div className="min-w-0 flex-auto">
                     <p className="text-sm font-semibold leading-6 text-gray-900">
                       {address.name}
@@ -434,7 +434,7 @@ export default function UserProfile() {
                     </p>
                   </div>
                 </div>
-                <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                <div className=" shrink-0 sm:flex sm:flex-col sm:items-end">
                   <p className="text-sm leading-6 text-gray-800">
                     <span className="text-sm font-semibold leading-6 text-gray-900">
                       Phone on :
@@ -454,10 +454,10 @@ export default function UserProfile() {
                     {address.pinCode}
                   </p>
                 </div>
-                <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                <div className=" shrink-0 sm:flex sm:flex-col sm:items-end">
                   <button
                     type="button"
-                    className="font-medium mb-8 text-[rgba(223,27,51,255)] hover:text-[#e95e5e]"
+                    className="font-medium lg:mb-8 md:mb-8 sm:mb-8 mr-7 text-[rgba(223,27,51,255)] hover:text-[#e95e5e]"
                     // onClick={(e) => setSelectedEditIndex(1)}
                     onClick={(e) => handleEditForm(index)}
                   >

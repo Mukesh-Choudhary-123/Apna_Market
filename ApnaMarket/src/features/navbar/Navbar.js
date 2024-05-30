@@ -49,7 +49,8 @@ const Navbar = ({ children }) => {
           <div className="min-h-full ">
             <Disclosure
               as="nav"
-              className="bg-gradient-to-l from-[rgba(223,27,51,255)] via-[#d25252] to-gray-300"
+              // className="bg-gradient-to-l from-[rgba(223,27,51,255)] via-[#d25252] to-gray-300"
+              className="bg-[#F2F4F6]"
             >
               {({ open }) => (
                 <>
@@ -57,7 +58,7 @@ const Navbar = ({ children }) => {
                     <div className="flex h-16 items-center justify-between">
                       <div className="flex items-center">
                         <div className="flex-shrink-0">
-                          <Link to="/">
+                          <Link to="/home">
                             <div className="h-10   rounded-full text-align: center;">
                               <img
                                 className="h-10  rounded-full"
@@ -68,7 +69,7 @@ const Navbar = ({ children }) => {
                           </Link>
                         </div>
                         <div className="mx-auto max-w-7xl px-2 py-5 sm:px-3 lg:px-4">
-                          <h1 className="text-3xl font-bold tracking-tight text-gray-700">
+                          <h1 className=" lg:text-3xl sm:text-1xl md:text-2xl font-bold tracking-tight text-gray-700">
                             Apna Market
                           </h1>
                         </div>
