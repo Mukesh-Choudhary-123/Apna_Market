@@ -1,21 +1,8 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import CartPage from "./pages/CartPage";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-import CartPage from "./pages/CartPage";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-  BrowserRouter,
-} from "react-router-dom";
-
-import CheckoutPage from "./pages/CheckoutPage";
-import ProductDetailPage from "./pages/ProductDetailPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import Protected from "./features/auth/components/Protected";
-import ProtectedAdmin from "./features/auth/components/ProtectedAdmin";
-import OrderSuccessPage from "./pages/OrderSuccessPage";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -23,19 +10,25 @@ import {
   selectLoggedInUser,
   selectUserChecked,
 } from "./features/auth/AuthSlice";
-import { fetchItemByUserIdAsync } from "./features/cart/CartSlice";
-import { UserOrderPage } from "./pages/UserOrderPage";
-import { UserProfilePage } from "./pages/UserProfilePage";
-import { fetchLoggedInUserAsync } from "./features/user/UserSlice";
 import Logout from "./features/auth/components/Logout";
-import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import Protected from "./features/auth/components/Protected";
+import ProtectedAdmin from "./features/auth/components/ProtectedAdmin";
+import { fetchItemByUserIdAsync } from "./features/cart/CartSlice";
+import { fetchLoggedInUserAsync } from "./features/user/UserSlice";
 import AdminHome from "./pages/AdminHome";
+import AdminOrdersPage from "./pages/AdminOrdersPage";
 import AdminProductDetailPage from "./pages/AdminProductDetailPage";
 import AdminProductFormPage from "./pages/AdminProductFormPage";
-import AdminOrdersPage from "./pages/AdminOrdersPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import IntroPage from "./pages/IntroPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import OrderSuccessPage from "./pages/OrderSuccessPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 import ProductListCategorySectionPage from "./pages/ProductListCategorySectionPage";
 import StripeCheckout from "./pages/StripeCheckout";
-import IntroPage from "./pages/IntroPage";
+import { UserOrderPage } from "./pages/UserOrderPage";
+import { UserProfilePage } from "./pages/UserProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -139,7 +132,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/orders",
+    path: "/my-orders",
     element: (
       <Protected>
         <UserOrderPage></UserOrderPage>

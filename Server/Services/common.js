@@ -19,7 +19,7 @@ exports.cookieExtractor = (req) => {
     console.log("TOKEN : Nahi mela yaar");
   }
   token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTA4OGMyMWIxYTdlM2NhYzYyYTRmMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE2NzIyNTkxfQ.iMbo1h5Rh4ymyGl92QgGTVW7XT5VHx2EiJx-qlGVt5E";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTlhYTI2ZGE2ODA2ZThhY2ZmNzYwNSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE3MTUyMjk0fQ.cXnDSez_5Kw6tPU37OaVkluH1xnffI8TPPp2Qnr3a1A";
 
   return token;
 };

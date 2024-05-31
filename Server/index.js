@@ -20,7 +20,8 @@ const cartRouter = require("./routes/Cart");
 const ordersRouter = require("./routes/Order");
 const { User } = require("./model/User");
 const { isAuth, sanitizeUser, cookieExtractor } = require("./Services/common");
-
+const path = require("path");
+const { Order } = require("./model/Order");
 // Jwt OPTIONS
 
 const opts = {};
@@ -28,7 +29,7 @@ opts.jwtFromRequest = cookieExtractor;
 opts.secretOrKey = process.env.JWT_SECRET_KEY;
 
 //middleware
-server.use(express.static("build"));
+server.use(express.static(path.resolve(__dirname, "build")));
 server.use(cookieParser());
 server.use(
   session({
@@ -55,6 +56,9 @@ server.use("/auth", authRouter.router);
 server.use("/cart", isAuth(), cartRouter.router);
 server.use("/orders", isAuth(), ordersRouter.router);
 
+server.get("*", (req, res) =>
+  res.sendFile(path.resolve("build", "index.html"))
+);
 // passport Strategies
 passport.use(
   "local",
@@ -149,7 +153,7 @@ passport.deserializeUser(function (user, cd) {
 const stripe = require("stripe")(process.env.STRIPE_SERVER_KEY);
 
 server.post("/create-payment-intent", async (req, res) => {
-  const { totalAmount } = req.body;
+  const { totalAmount, orderId } = req.body;
 
   // Additional metadata for export transactions (if required)
   const paymentIntent = await stripe.paymentIntents.create({
@@ -158,6 +162,9 @@ server.post("/create-payment-intent", async (req, res) => {
     // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
     automatic_payment_methods: {
       enabled: true,
+    },
+    metadata: {
+      orderId,
     },
   });
 
@@ -172,7 +179,7 @@ const endpointSecret = process.env.ENDPOINT_SECRET;
 server.post(
   "/webhook",
   express.raw({ type: "application/json" }),
-  (request, response) => {
+  async (request, response) => {
     const sig = request.headers["stripe-signature"];
     console.log("Web- Hook");
     let event;
@@ -185,7 +192,21 @@ server.post(
     }
 
     // Handle the event
-    console.log(`Unhandled event type ${event.type}`);
+    switch (event.type) {
+      case "payment_intent.succeeded":
+        const paymentIntentSucceeded = event.data.object;
+        console.log({ paymentIntentSucceeded });
+
+        const order = await Order.findById(
+          paymentIntentSucceeded.metadata.orderId
+        );
+        order.paymentStatus = "received";
+        await order.save();
+        break;
+
+      default:
+        console.log(`Unhandled event type ${event.type}`);
+    }
 
     // Return a 200 response to acknowledge receipt of the event
     response.send();
@@ -199,10 +220,6 @@ async function main() {
   console.log("Database connection successfully");
 }
 
-// server.get("/", (req, res) => {
-//   res.json({ status: "success" });
-// });
-
-server.listen(process.env.PORT, () => {
-  console.log("server listening on port " + process.env.PORT);
+server.listen(() => {
+  console.log("server Started");
 });

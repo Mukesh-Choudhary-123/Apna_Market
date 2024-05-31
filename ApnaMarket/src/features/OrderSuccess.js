@@ -33,7 +33,7 @@ export default function OrderSuccess() {
             Order Number <span className="text-black"> #{params.id}</span>
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Link to="/">
+            <Link to="/home">
               <a className="rounded-md bg-[rgba(223,27,51,255)] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#ef4444] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ef4444]">
                 Go back home
               </a>

@@ -14,9 +14,10 @@ import toast from "react-hot-toast";
 export default function Login() {
   const count = useSelector(selectCount);
   const error = useSelector(selectError);
+  console.log("ERROR => ", error);
   const user = useSelector(selectLoggedInUser);
   const dispatch = useDispatch();
-
+  console.log(user);
   const {
     register,
     handleSubmit,

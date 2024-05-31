@@ -34,6 +34,7 @@ export const checkAuthAsync = createAsyncThunk("users/checkAuth", async () => {
     const response = await checkAuth();
     return response.data;
   } catch (error) {
+    error = error;
     console.log(error);
   }
 });
