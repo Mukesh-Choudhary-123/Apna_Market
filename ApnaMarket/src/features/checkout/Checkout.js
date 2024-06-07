@@ -87,7 +87,7 @@ function Checkout() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
             <form
-              className="bg-white mt-12 px-3 py-6"
+              className="bg-white mt-12 px-3 py-6 w-auto mb-4  rounded-xl"
               noValidate
               onSubmit={handleSubmit((data) => {
                 console.log("DATA : ", data);
@@ -103,7 +103,7 @@ function Checkout() {
             >
               <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
-                  <h2 className=" text-3xl text-center font-semibold leading-7 text-gray-900">
+                  <h2 className=" lg:text-3xl md:text-3xl sm:text-3xl  text-2xl text-center font-semibold leading-7 text-gray-900">
                     Personal Information
                   </h2>
                   <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -266,9 +266,9 @@ function Checkout() {
                     {user?.addresses?.map((address, index) => (
                       <li
                         key={index}
-                        className="flex justify-between gap-x-6 mt-2 py-5 px-4 border-solid border-2 border-gray-200"
+                        className="lg:flex md:flex sm:flex justify-between gap-x-6 mt-2 py-5 px-4 border-solid border-2 border-gray-200"
                       >
-                        <div className="flex min-w-0 gap-x-4">
+                        <div className="lg:flex md:flex sm:flex min-w-0 gap-x-4">
                           <input
                             id="address"
                             onChange={handleAddress}
@@ -296,7 +296,7 @@ function Checkout() {
                             </p>
                           </div>
                         </div>
-                        <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                        <div className=" shrink-0 sm:flex sm:flex-col sm:items-end">
                           <p className="text-sm leading-6 text-gray-800">
                             <span className="text-sm font-semibold leading-6 text-gray-900">
                               Phone on :{" "}
@@ -373,20 +373,20 @@ function Checkout() {
 
           {/* Cart */}
           <div className="lg:col-span-2">
-            <div className="mb-12 mt-12 py-4 max-w-7xl px-0  sm:px-0 lg:px-0 bg-white">
-              <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 mb-5">
+            <div className="mb-12 lg:mt-12 md:mt-12 sm:mt-12 py-4 max-w-7xl px-0 rounded-xl sm:px-0 lg:px-0 bg-white">
+              <h1 className="text-center lg:text-4xl md:text-3xl sm:text-3xl  text-2xl  font-bold tracking-tight text-gray-900 mb-5">
                 Cart
               </h1>
               <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                 <div className="flow-root">
                   {items && items.length > 0 ? (
                     <ul role="list" className="-my-6 divide-y divide-gray-200">
-                      {items.map((item) => (
+                      {items?.map((item) => (
                         <li key={item.id} className="flex py-6">
                           <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                             <img
-                              src={item.product.thumbnail}
-                              alt={item.product.title}
+                              src={item?.product?.thumbnail}
+                              alt={item?.product?.title}
                               className="h-full w-full object-cover object-center"
                             />
                           </div>
@@ -395,12 +395,14 @@ function Checkout() {
                             <div>
                               <div className="flex justify-between text-base font-medium text-gray-900">
                                 <h3>
-                                  <a href={item.href}>{item.product.title}</a>
+                                  <a href={item?.href}>
+                                    {item?.product?.title}
+                                  </a>
                                 </h3>
-                                <p className="ml-4">$ {item.product.price}</p>
+                                <p className="ml-4">$ {item?.product?.price}</p>
                               </div>
                               <p className="mt-1 text-sm text-gray-500">
-                                {item.product.brand}
+                                {item?.product?.brand}
                               </p>
                             </div>
                             <div className="flex flex-1 items-end justify-between text-sm">
@@ -414,7 +416,7 @@ function Checkout() {
                                 <div>
                                   <select
                                     onChange={(e) => handleQuantity(e, item)}
-                                    value={item.quantity}
+                                    value={item?.quantity}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[rgba(223,27,51,255)] sm:max-w-xs sm:text-sm sm:leading-6"
                                   >
                                     <option value="1">1</option>

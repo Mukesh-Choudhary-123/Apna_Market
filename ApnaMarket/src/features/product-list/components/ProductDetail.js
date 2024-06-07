@@ -86,15 +86,18 @@ export default function ProductDetail() {
   }, []);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white ">
       {status === "loading" ? (
-        <InfinitySpin
-          visible={true}
-          width="200"
-          color="#df1b33"
-          ariaLabel="infinity-spin-loading"
-          className="align-center"
-        />
+        <div className="flex flex-col h-screen justify-center items-center">
+          <InfinitySpin
+            visible={true}
+            width="200"
+            color="#df1b33"
+            ariaLabel="infinity-spin-loading"
+            className="align-center "
+          />
+          <span className="text-center ">Product Loading ...</span>
+        </div>
       ) : null}
       {product && (
         <div className="pt-6">
@@ -144,7 +147,7 @@ export default function ProductDetail() {
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Product information</h2>
               <p className="text-3xl tracking-tight text-gray-900">
-                {product.price}
+                $ {product.price}
               </p>
 
               {/* Reviews */}
@@ -322,11 +325,26 @@ export default function ProductDetail() {
 
                 <div className="mt-4">
                   <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                    {highlights.map((highlight) => (
-                      <li key={highlight} className="text-gray-400">
-                        <span className="text-gray-600">{highlight}</span>
-                      </li>
-                    ))}
+                    <li className="text-gray-900">
+                      <span className="text-gray-700">Brand : </span>
+                      <span className="text-gray-400">{product.brand}</span>
+                    </li>
+                    <li className="text-gray-900">
+                      <span className="text-gray-700">
+                        Discount Percentage :{" "}
+                      </span>
+                      <span className="text-gray-400">
+                        {product.discountPercentage} %
+                      </span>
+                    </li>
+                    <li className="text-gray-900">
+                      <span className="text-gray-700">Rating : </span>
+                      <span className="text-gray-400">{product.rating}</span>
+                    </li>
+                    <li className="text-gray-900">
+                      <span className="text-gray-700">Category : </span>
+                      <span className="text-gray-400">{product.category}</span>
+                    </li>
                   </ul>
                 </div>
               </div>

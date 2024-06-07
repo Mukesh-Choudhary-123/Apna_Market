@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const server = express();
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
-const port = 8080;
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -220,6 +219,6 @@ async function main() {
   console.log("Database connection successfully");
 }
 
-server.listen(() => {
-  console.log("server Started");
+server.listen(8080, () => {
+  console.log("server Started 8080");
 });

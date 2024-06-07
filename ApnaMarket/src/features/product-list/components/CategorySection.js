@@ -53,7 +53,7 @@ export default function CategorySection() {
                 </div>
                 <div className="mt-4 flex justify-center">
                   <div>
-                    <h3 className="text-lg text-gray-700">
+                    <h3 className="md:text-lg  lg:text-lg  text-gray-700">
                       <p href={category.title}>
                         <span aria-hidden="true" />
                         {category.title}

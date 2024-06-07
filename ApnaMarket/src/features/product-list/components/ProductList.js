@@ -236,7 +236,7 @@ export default function ProductList() {
 
           <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex items-baseline justify-between border-gray-200 pt-7">
-              <h1 className="text-3xl tracking-widest bg-gray-100 p-2 rounded-2xl border text-gray-900">
+              <h1 className=" md:text-2xl sm:text-2xl lg:text-3xl tracking-widest   text-gray-900">
                 New Arrivals
               </h1>
               <div className="flex items-center">
@@ -388,16 +388,18 @@ export default function ProductList() {
                 <div className="lg:col-span-3">
                   <div className="bg-white">
                     <div className="mx-auto max-w-2xl px-4 py-1 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
-                      {status === "loading" ? (
-                        <div className="flex justify-center ">
-                          {/* <InfinitySpin
-                            visible={true}
-                            width="200"
-                            color="#df1b33"
-                            ariaLabel="infinity-spin-loading"
-                          /> */}
-                        </div>
-                      ) : null}
+                      {status === "loading"
+                        ? // <div className=" flex flex-col items-center h-96 justify-center">
+                          //   <InfinitySpin
+                          //     visible={true}
+                          //     width="200"
+                          //     color="#df1b33"
+                          //     ariaLabel="infinity-spin-loading"
+                          //   />
+                          //   <span className=" ">Product Loading ...</span>
+                          // </div>
+                          null
+                        : null}
                       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
                         {products.map((product) => (
                           <Link to={`/product-detail/${product.id}`}>
@@ -485,13 +487,13 @@ function Pagination({ page, setPage, handlePage, totalItems }) {
       <div className="flex flex-1 justify-between sm:hidden">
         <div
           onClick={(e) => handlePage(page > 1 ? page - 1 : page)}
-          className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          className="relative cursor-pointer inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         >
           Previous
         </div>
         <div
           onClick={(e) => handlePage(page < totalPage ? page + 1 : page)}
-          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          className="relative cursor-pointer ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         >
           Next
         </div>
@@ -522,13 +524,16 @@ function Pagination({ page, setPage, handlePage, totalItems }) {
               className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
               <span className="sr-only">Previous</span>
-              <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
+              <ChevronLeftIcon
+                className="h-5 w-5 cursor-pointer"
+                aria-hidden="true"
+              />
             </div>
             {Array.from({ length: totalPage }).map((el, index) => (
               <div
                 onClick={(e) => handlePage(index + 1)}
                 aria-current="page"
-                className={`relative cursor-pointer z-10 inline-flex items-center ${
+                className={`relative  z-10 inline-flex items-center ${
                   index + 1 === page
                     ? "bg-[rgba(223,27,51,255)] text-white"
                     : "text-gray-400"
@@ -543,7 +548,10 @@ function Pagination({ page, setPage, handlePage, totalItems }) {
               className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
               <span className="sr-only">Next</span>
-              <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+              <ChevronRightIcon
+                className="h-5 w-5 cursor-pointer"
+                aria-hidden="true"
+              />
             </div>
           </nav>
         </div>
