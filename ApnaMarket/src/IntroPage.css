@@ -1,0 +1,37 @@
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+}
+
+.bounce-1 {
+  animation-delay: 0s;
+}
+
+.bounce-2 {
+  animation-delay: 0.2s;
+}
+
+.bounce-3 {
+  animation-delay: 0.4s;
+}
+
+.bounce-4 {
+  animation-delay: 0.6s;
+}
+
+.bounce-5 {
+  animation-delay: 0.8s;
+}
+
+.bounce-6 {
+  animation-delay: 1s;
+}
