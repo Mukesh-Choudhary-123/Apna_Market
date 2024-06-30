@@ -27,9 +27,7 @@ export default function CategorySection() {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfZWR3dgGJmMCbLsrDEXuGHe5r82d-HPvg9w&s",
     },
   ];
-  const handlebestCategory = (category) => {
-    console.log(category);
-  };
+
   return (
     <div className=" py-12 sm:py-12 ">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

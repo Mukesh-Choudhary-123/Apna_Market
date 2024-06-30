@@ -13,13 +13,25 @@ exports.fetchCartByUser = async (req, res) => {
 
 exports.addToCart = async (req, res) => {
   const { id } = req.user;
+  console.log(" addToCart ID := ", id);
+  // console.log(req.body);
+  const { product, quantity } = req.body;
+
+  if (!product || !quantity) {
+    return res.status(400).json({
+      error: "Product and quantity are required.",
+    });
+  }
   const cart = new Cart({ ...req.body, user: id });
+  console.log("cart := ", cart);
   try {
     const doc = await cart.save();
+    console.log("cart.save", doc);
     const result = await doc.populate("product");
+    console.log("result", result);
     res.status(201).json(result);
   } catch (error) {
-    console.log({ error });
+    console.log("Error gentrating here ..", { error });
     res.status(400).json(error);
   }
 };

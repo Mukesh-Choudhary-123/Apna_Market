@@ -9,6 +9,7 @@ import {
   deleteItemFromCartAsync,
   selectCartStatus,
   selectItem,
+  updateCartAsync,
   updateItemAsync,
 } from "./CartSlice";
 import Lottie from "lottie-react";
@@ -42,7 +43,7 @@ export default function Cart() {
   }, []);
 
   const handleQuantity = (e, item) => {
-    dispatch(updateItemAsync({ id: item.id, quantity: +e.target.value }));
+    dispatch(updateCartAsync({ id: item.id, quantity: +e.target.value }));
   };
 
   const handleRemove = (e, id) => {

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   deleteItemFromCartAsync,
   selectItem,
-  updateItemAsync,
+  updateCartAsync,
 } from "../cart/CartSlice";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
@@ -44,7 +44,7 @@ function Checkout() {
   }, []);
 
   const handleQuantity = (e, item) => {
-    dispatch(updateItemAsync({ id: item.id, quantity: +e.target.value }));
+    dispatch(updateCartAsync({ id: item.id, quantity: +e.target.value }));
   };
 
   const handleRemove = (e, id) => {

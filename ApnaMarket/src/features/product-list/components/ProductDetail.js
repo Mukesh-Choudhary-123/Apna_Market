@@ -48,32 +48,69 @@ export default function ProductDetail() {
   const items = useSelector(selectItem);
   const status = useSelector(selectProductListStatus);
 
+  console.log(user.id);
+
   const dispatch = useDispatch();
   const param = useParams();
 
+  console.log(product?.id);
   console.log(product);
-  console.log(items);
+  const { item } = items;
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + { item });
+  useEffect(() => {
+    console.log("Items:", items);
+  }, [items]);
+  // const handleCart = (e) => {
+  //   e.preventDefault();
+  //   if (items.findIndex((item) => item.product === product?.id) < 0) {
+  //     const newItem = {
+  //       product: product?.id,
+  //       quantity: 1,
+  //     };
+  //     console.log(newItem);
+  //     dispatch(addToCartAsync(newItem));
+  //     toast.success("Item added successfully", {
+  //       icon: "🛒✔",
+  //       // duration: 2000,
+  //       // position: "top-right",
+  //       // style: {
+  //       //   background: "green",
+  //       //   color: "white",
+  //       // },
+  //     });
+  //   } else {
+  //     toast.error("already added");
+  //     console.log("already added");
+  //   }
+  // };
 
   const handleCart = (e) => {
     e.preventDefault();
-    if (items.findIndex((item) => item.product === product.id) < 0) {
+    const productId = product?.id;
+    const userId = user?.id;
+
+    if (!productId) {
+      toast.error("Product ID is missing");
+      console.log("Product ID is missing");
+      return;
+    }
+
+    if (items.findIndex((item) => item?.product === productId) < 0) {
       const newItem = {
-        product: product.id,
+        product: productId,
         quantity: 1,
+        user: userId,
       };
+
+      console.log("New item to be added:", newItem);
+
       dispatch(addToCartAsync(newItem));
       toast.success("Item added successfully", {
         icon: "🛒✔",
-        // duration: 2000,
-        // position: "top-right",
-        // style: {
-        //   background: "green",
-        //   color: "white",
-        // },
       });
     } else {
-      toast.error("already added");
-      console.log("already added");
+      toast.error("Item already added to the cart");
+      console.log("Item already added to the cart");
     }
   };
 
