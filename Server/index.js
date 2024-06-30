@@ -232,7 +232,7 @@ async function main() {
   await mongoose.connect(process.env.MONGODB_URL);
   console.log("Database connection successfully");
   console.log(
-    "________________________________________________________________"
+    "__________________________________________________________________"
   );
 }
 
