@@ -55,7 +55,7 @@ export default function Cart() {
       {!item.length ? (
         <div className="">
           <div className="justify-center flex">
-            <Lottie animationData={AminationData} className="h-72 w-72 " />
+            <Lottie animationData={AminationData} className="h-72 w-72 mt-16" />
           </div>
           <h1 className="text-center text-4xl">Cart is Empty</h1>
         </div>
@@ -188,7 +188,7 @@ export default function Cart() {
               <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                 <p>
                   or{" "}
-                  <Link to="/">
+                  <Link to="/home">
                     <button
                       type="button"
                       className="font-medium text-[rgba(223,27,51,255)] hover:text-[#ef4444]"

@@ -17,9 +17,9 @@ import { Tooltip } from "react-tooltip";
 import { selectUserInfo } from "../user/UserSlice";
 
 const user = {
-  name: "Mukesh Choudhary",
+  // name: "Mukesh Choudhary",
   // email: "tom@example.com",
-  imageUrl: "https://avatars.githubusercontent.com/u/118448246?v=4",
+  // imageUrl: "https://avatars.githubusercontent.com/u/118448246?v=4",
 };
 const navigation = [
   { name: "Products", link: "/admin", admin: true },
@@ -80,7 +80,7 @@ const Navbar = ({ children }) => {
                                   className={classNames(
                                     item.current
                                       ? "bg-red-50 text-red-700  ring-1 ring-inset ring-red-600/10"
-                                      : "text-gray-300 hover:text-white",
+                                      : "text-gray-600 hover:text-gray-400",
                                     "rounded-md px-3 py-2 text-sm font-medium"
                                   )}
                                   aria-current={

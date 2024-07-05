@@ -10,12 +10,14 @@ import {
   selectProductById,
   updateProductAsync,
 } from "../../product-list/ProductSlice";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Modal from "../../common/Modal";
+import toast from "react-hot-toast";
 
 const ProductForm = () => {
   const dispatch = useDispatch();
   const params = useParams();
+  const navigate = useNavigate();
 
   const [openModal, setOpenModal] = useState(null);
 
@@ -53,6 +55,8 @@ const ProductForm = () => {
       setValue("image2", selectedProducts.images[1]);
       setValue("image3", selectedProducts.images[2]);
       setValue("image4", selectedProducts.images[3]);
+      setValue("details", selectedProducts.details);
+      setValue("rating", selectedProducts.rating);
     }
   }, [selectedProducts, setValue, params.id]);
 
@@ -60,11 +64,12 @@ const ProductForm = () => {
     const product = { ...selectedProducts };
     product.deleted = true;
     dispatch(updateProductAsync(product));
+    toast.error("Product deleted");
   };
 
   return (
     <form
-      className="bg-white  px-3 py-6"
+      className="bg-white  px-3 py-6 w-auto"
       noValidate
       onSubmit={handleSubmit((data) => {
         const product = { ...data };
@@ -75,7 +80,7 @@ const ProductForm = () => {
           product.image4,
           product.thumbnail,
         ];
-        product.rating = 0;
+        product.rating = product.rating;
         delete product["image1"];
         delete product["image2"];
         delete product["image3"];
@@ -88,22 +93,27 @@ const ProductForm = () => {
         if (params.id) {
           product.id = params.id;
           // console.log(params.id);
-          // console.log(product);
+          console.log(product);
           // console.log(selectedProducts[0].rating);
-          product.rating = selectedProducts.rating || 0;
+          // product.rating = selectedProducts.rating || 0;
+          // product.rating = selectedProducts.rating;
           dispatch(updateProductAsync(product));
           reset();
+          navigate(`/admin`);
+          toast.success("Products updated successfully");
         } else {
           dispatch(createProductAsync(product));
-          reset();
+          toast.error("Product not updated successfully");
+          // reset();
+          // navigate(`/admin`);
         }
       })}
     >
       <div className="space-y-12">
-        <div className="">
+        <div className=" p-2">
           <div className="border-b border-gray-900/10 ">
             <h2 className=" text-2xl text-center font-bold leading-8 text-gray-900">
-              Add Product
+              {!selectedProducts ? <>Add Product</> : <>Edit Product</>}
             </h2>
             {selectedProducts?.deleted && (
               <h3 className="text-red-600"> This Product is deleted </h3>
@@ -171,6 +181,34 @@ const ProductForm = () => {
                     {categories.map((category) => (
                       <option value={category.value}>{category.label}</option>
                     ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* rating */}
+              <div className="sm:col-span-1">
+                <label
+                  htmlFor="rating"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  rating
+                </label>
+                <div className="mt-2">
+                  <select
+                    {...register("rating", {
+                      required: "rating is required",
+                    })}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[rgba(223,27,51,255)] sm:max-w-xs sm:text-sm sm:leading-6"
+                  >
+                    <option>select rating </option>
+                    <option value="1">1</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">2</option>
+                    <option value="2.8">2.8</option>
+                    <option value="3">3</option>
+                    <option value="3.3">3.2</option>
+                    <option value="4">4</option>
+                    <option value="4.4">4.4</option>
                   </select>
                 </div>
               </div>
@@ -272,14 +310,15 @@ const ProductForm = () => {
                 >
                   Thumbnail
                 </label>
-                <div className="mt-2">
+
+                <div className="mt-2 flex">
                   <input
                     id="thumbnail"
                     {...register("thumbnail", {
                       required: "thumbnail is required",
                     })}
                     type="text"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[rgba(223,27,51,255)] sm:text-sm sm:leading-6"
+                    className="block w-full mr-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[rgba(223,27,51,255)] sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -290,7 +329,7 @@ const ProductForm = () => {
                   htmlFor="image1"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Image 1
+                  Image Right
                 </label>
                 <div className="mt-2">
                   <input
@@ -309,7 +348,7 @@ const ProductForm = () => {
                   htmlFor="image2"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Image 2
+                  Image Center Top
                 </label>
                 <div className="mt-2">
                   <input
@@ -328,7 +367,7 @@ const ProductForm = () => {
                   htmlFor="image3"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Image 3
+                  Image Center Bottom
                 </label>
                 <div className="mt-2">
                   <input
@@ -347,7 +386,7 @@ const ProductForm = () => {
                   htmlFor="image4"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Image 4
+                  Image Left / Phone View Image
                 </label>
                 <div className="mt-2">
                   <input
@@ -360,9 +399,33 @@ const ProductForm = () => {
                   />
                 </div>
               </div>
+
+              {/* details */}
+              <div className="col-span-full">
+                <label
+                  htmlFor="details"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Details
+                </label>
+                <div className="mt-2">
+                  <textarea
+                    id="details"
+                    {...register("details", {
+                      required: "details is required",
+                    })}
+                    rows={3}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[rgba(223,27,51,255)] sm:text-sm sm:leading-6"
+                    defaultValue={""}
+                  />
+                </div>
+                <p className="mt-3 text-sm leading-6 text-gray-600">
+                  Write a details about Product.
+                </p>
+              </div>
             </div>
           </div>
-          <div className="border-b border-gray-900/10 pb-12 mt-6">
+          {/* <div className="border-b border-gray-900/10 pb-12 mt-6">
             <h2 className="text-base font-semibold leading-7 text-gray-900">
               Notifications
             </h2>
@@ -496,10 +559,11 @@ const ProductForm = () => {
                 </div>
               </fieldset>
             </div>
-          </div>
+          </div> */}
+
           <div className="mt-6 flex items-center justify-end gap-x-6">
             {/* Cancel */}
-            <button className="rounded-md bg-[rgb(170,167,167)] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#373636] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(223,27,51,255)]">
+            <button className="rounded-md bg-[#373636]  px-3 py-2 text-sm font-semibold text-white shadow-sm  hover:bg-[rgb(170,167,167)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(223,27,51,255)]">
               Cancel
             </button>
 

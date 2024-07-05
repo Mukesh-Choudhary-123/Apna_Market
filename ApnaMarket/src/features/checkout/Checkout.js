@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteItemFromCartAsync,
+  selectCartStatus,
   selectItem,
   updateItemAsync,
 } from "../cart/CartSlice";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
+import { InfinitySpin } from "react-loader-spinner";
 import { createOrderAsync, selectCurrentOrder } from "../order/OrderSlice";
 import { selectUserInfo, updateUserAsync } from "../user/UserSlice";
 import toast from "react-hot-toast";
@@ -26,6 +27,7 @@ function Checkout() {
   const user = useSelector(selectUserInfo);
   // const user = useSelector(selectLoggedInUser);
   const currentOrder = useSelector(selectCurrentOrder);
+  const status = useSelector(selectCartStatus);
   const items = useSelector(selectItem);
   const item = items;
   console.log(user);
@@ -68,12 +70,16 @@ function Checkout() {
       selectedAddress,
       status: "pending",
     };
-    dispatch(createOrderAsync(order));
+    if (order.selectedAddress) {
+      dispatch(createOrderAsync(order));
+    } else {
+      toast.error("Select Address");
+    }
   };
 
   return (
     <>
-      {!item.length && <Navigate to="/" replace={true}></Navigate>}
+      {!item.length && <Navigate to="/home" replace={true}></Navigate>}
       {currentOrder && currentOrder.paymentMethod === "cash" && (
         <Navigate
           to={`/order-success/${currentOrder.id}`}
@@ -274,7 +280,6 @@ function Checkout() {
                             onChange={handleAddress}
                             name="address"
                             type="radio"
-                            required
                             value={index}
                             className="h-4 w-4 border-gray-300 text-[rgba(223,27,51,255)] focus:ring-[rgba(223,27,51,255)]"
                           />
@@ -378,6 +383,20 @@ function Checkout() {
                 Cart
               </h1>
               <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                {status === "loading" ? (
+                  <div className="flex flex-col justify-center items-center">
+                    <InfinitySpin
+                      visible={true}
+                      width="200"
+                      color="#df1b33"
+                      ariaLabel="infinity-spin-loading"
+                      className="align-center "
+                    />
+                    <span className="text-center mb-10">
+                      Product Loading ...
+                    </span>
+                  </div>
+                ) : null}
                 <div className="flow-root">
                   {items && items.length > 0 ? (
                     <ul role="list" className="-my-6 divide-y divide-gray-200">
@@ -471,7 +490,7 @@ function Checkout() {
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                   <p>
                     or{" "}
-                    <Link to="/">
+                    <Link to="/home">
                       <button
                         type="button"
                         className="font-medium text-[rgba(223,27,51,255)] hover:text-[#ef4444]"

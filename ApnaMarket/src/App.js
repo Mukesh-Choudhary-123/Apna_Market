@@ -29,6 +29,7 @@ import ProductListCategorySectionPage from "./pages/ProductListCategorySectionPa
 import StripeCheckout from "./pages/StripeCheckout";
 import { UserOrderPage } from "./pages/UserOrderPage";
 import { UserProfilePage } from "./pages/UserProfilePage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 const router = createBrowserRouter([
   {
@@ -162,6 +163,10 @@ const router = createBrowserRouter([
   {
     path: "/forgot-password",
     element: <ForgotPasswordPage></ForgotPasswordPage>,
+  },
+  {
+    path: "/reset-password",
+    element: <ResetPasswordPage></ResetPasswordPage>,
   },
   {
     path: "/*",

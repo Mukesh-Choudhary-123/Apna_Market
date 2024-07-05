@@ -8,11 +8,11 @@
 
 .slideshowSlider {
   white-space: nowrap;
-  transition: ease 1000ms;
+  transition: ease 2000ms;
 }
 .slideshowSlider2 {
   white-space: nowrap;
-  transition: ease 1000ms;
+  transition: ease 2000ms;
 }
 
 .slide {

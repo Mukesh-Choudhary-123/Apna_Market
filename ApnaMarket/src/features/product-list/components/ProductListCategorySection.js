@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import {
   fetchBestCategoriesAsync,
   selectBestCategories,
+  selectBestCategoriesStatus,
 } from "../ProductSlice";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { StarIcon } from "@heroicons/react/20/solid";
-
+import { InfinitySpin } from "react-loader-spinner";
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
@@ -17,7 +18,7 @@ const ProductListCategorySection = () => {
   const dispatch = useDispatch();
 
   const products = useSelector(selectBestCategories);
-
+  const status = useSelector(selectBestCategoriesStatus);
   console.log(products);
 
   console.log("category :", category);
@@ -29,11 +30,23 @@ const ProductListCategorySection = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="bg-white">
-      <h2 className="text-2xl text-center font-bold tracking-tight text-gray-900">
-        {category}
+    <div className="bg-white min-h-screen">
+      <h2 className="text-2xl text-center pt-4 tracking-widest font-bold  text-gray-900">
+        {category.toUpperCase()}
       </h2>
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-2xl px-4  sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8">
+        {status === "loading" ? (
+          <div className=" flex flex-col items-center h-96 justify-center">
+            <InfinitySpin
+              visible={true}
+              width="200"
+              color="#df1b33"
+              ariaLabel="infinity-spin-loading"
+            />
+            <span className=" ">Product Loading ...</span>
+          </div>
+        ) : // null
+        null}
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {products ? (
             <>

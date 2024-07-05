@@ -1,5 +1,5 @@
 const passport = require("passport");
-
+const nodemailer = require("nodemailer");
 exports.isAuth = (req, res, done) => {
   return passport.authenticate("jwt");
 };
@@ -26,4 +26,29 @@ exports.cookieExtractor = (req) => {
   console.log("TOKEN dummy : --- ", token);
 
   return token;
+};
+
+// Email
+
+let transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // Use `true` for port 465, `false` for all other ports
+  auth: {
+    user: "mukeshchoudhary1062003@gmail.com",
+    pass: "umqz whsa zizp ttdy",
+  },
+});
+
+exports.sendMail = async function ({ to, subject, text, html }) {
+  // send mail with defined transport object
+
+  let info = await transporter.sendMail({
+    from: '"Apna Market" <mukeshchoudhary1062003@gmail.com.email>', // sender address
+    to: to, // list of receivers
+    subject, // Subject line
+    text, // plain text body
+    html, // html body
+  });
+  return info;
 };

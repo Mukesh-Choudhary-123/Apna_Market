@@ -2,6 +2,7 @@ import React from "react";
 import LOGO from "../logo.png";
 import { Link } from "react-router-dom";
 import "../IntroPage.css";
+import Footer from "../features/common/Footer";
 
 const IntroPage = () => {
   return (
@@ -138,6 +139,7 @@ const IntroPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

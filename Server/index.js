@@ -21,6 +21,7 @@ const { User } = require("./model/User");
 const { isAuth, sanitizeUser, cookieExtractor } = require("./Services/common");
 const path = require("path");
 const { Order } = require("./model/Order");
+
 // Jwt OPTIONS
 
 const opts = {};
@@ -42,6 +43,7 @@ server.use(
 server.use(passport.authenticate("session"));
 server.use(
   cors({
+    origin: "http://localhost:3000",
     exposedHeaders: ["X-Total-Count"],
   })
 );

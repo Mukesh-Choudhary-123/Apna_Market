@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 const productSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
+  details: { type: String, required: true },
   price: {
     type: Number,
     min: [0, "price should be greater then -1"],
@@ -18,7 +19,8 @@ const productSchema = new Schema({
   rating: {
     type: Number,
     max: [5, "rating max 5"],
-    default: 0,
+    // default: 0,
+    required: true,
   },
   stock: {
     type: Number,

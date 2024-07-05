@@ -86,7 +86,7 @@ const AdminOrders = () => {
     <div className="overflow-x-auto ">
       <div className=" min-w-screen min-h-screen  bg-gray-100 flex items-center justify-center  font-sans overflow-hidden">
         <div className="w-full ">
-          <div className="bg-white shadow-md  rounded my-6">
+          <div className="bg-white shadow-md  overflow-x-auto rounded my-6">
             <table className="min-w-max w-full  table-auto ">
               <thead>
                 <tr className="bg-gray-200  text-gray-600 uppercase text-sm leading-normal">

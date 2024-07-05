@@ -1,6 +1,7 @@
 import React from "react";
 import AdminOrders from "../features/admin/components/AdminOrders";
 import NavBar from "../features/navbar/Navbar";
+import Footer from "../features/common/Footer";
 
 const AdminOrdersPage = () => {
   return (
@@ -8,6 +9,7 @@ const AdminOrdersPage = () => {
       <NavBar>
         <AdminOrders></AdminOrders>
       </NavBar>
+      <Footer />
     </div>
   );
 };
