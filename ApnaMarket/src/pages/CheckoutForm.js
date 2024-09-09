@@ -79,7 +79,7 @@ export default function CheckoutForm() {
     // }
 
     // setIsLoading(false); k
-    k;
+
     if (error) {
       console.error("Payment confirmation error:", error);
       setMessage(error.message || "An unexpected error occurred.");

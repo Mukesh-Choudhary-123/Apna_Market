@@ -27,7 +27,10 @@ import {
 } from "@heroicons/react/20/solid";
 import { InfinitySpin } from "react-loader-spinner";
 import { Link } from "react-router-dom";
-import { ITEMS_PER_PAGE } from "../../../app/constants";
+import {
+  formatToIndianNumberingSystem,
+  ITEMS_PER_PAGE,
+} from "../../../app/constants";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", current: false },
@@ -415,12 +418,12 @@ export default function ProductList() {
                                 />
                               </div>
                               <div className="mt-4 flex justify-between">
-                                <div>
+                                <div className="w-50">
                                   <h3 className="text-sm text-gray-700">
                                     <p href={product.href}>
                                       <span
                                         aria-hidden="true"
-                                        className="absolute inset-0 overflow-x hidden"
+                                        className="absolute inset-0 overflow-x hidden truncate"
                                       />
                                       {product.title}
                                     </p>
@@ -434,15 +437,20 @@ export default function ProductList() {
                                 </div>
                                 <div>
                                   <p className="text-sm font-medium text-gray-900">
-                                    $
-                                    {Math.round(
-                                      product.price *
-                                        (1 - product.discountPercentage / 100)
+                                    ₹{" "}
+                                    {formatToIndianNumberingSystem(
+                                      Math.round(
+                                        product.price *
+                                          (1 - product.discountPercentage / 100)
+                                      )
                                     )}
                                   </p>
                                   <p className="text-sm font-medium text-gray-500">
                                     <span className="line-through">
-                                      ${product.price}
+                                      ₹{" "}
+                                      {formatToIndianNumberingSystem(
+                                        product?.price
+                                      )}
                                     </span>
                                   </p>
                                 </div>

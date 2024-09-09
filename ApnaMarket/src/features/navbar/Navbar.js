@@ -22,10 +22,13 @@ const user = {
   // imageUrl: "https://avatars.githubusercontent.com/u/118448246?v=4",
 };
 const navigation = [
-  { name: "Products", link: "/admin", admin: true },
-  { name: "Orders", link: "/admin/orders", admin: true },
+  { name: "All Products", link: "/admin", admin: true },
+  { name: "All Orders", link: "/admin/orders", admin: true },
 ];
 const userNavigation = [
+  { name: "All Products", link: "/admin", admin: true },
+  { name: "All Orders", link: "/admin/orders", admin: true },
+  // { name: "My Cart", link: "/cart" },
   { name: "My Profile", link: "/profile" },
   { name: "My Orders", link: "/my-orders" },
   { name: "Sign out", link: "/logout" },
@@ -48,6 +51,7 @@ const Navbar = ({ children }) => {
               as="nav"
               // className="bg-gradient-to-l from-[rgba(223,27,51,255)] via-[#d25252] to-gray-300"
               className="bg-[#F2F4F6]"
+              // className="bg-[rgba(223,27,51,255)]"
             >
               {({ open }) => (
                 <>
@@ -156,21 +160,24 @@ const Navbar = ({ children }) => {
                               leaveTo="transform opacity-0 scale-95"
                             >
                               <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                {userNavigation.map((item) => (
-                                  <Menu.Item key={item.name}>
-                                    {({ active }) => (
-                                      <Link
-                                        to={item.link}
-                                        className={classNames(
-                                          active ? "bg-gray-100" : "",
-                                          "block px-4 py-2 text-sm text-gray-700"
-                                        )}
-                                      >
-                                        {item.name}
-                                      </Link>
-                                    )}
-                                  </Menu.Item>
-                                ))}
+                                {userNavigation.map((item) =>
+                                  !item.admin ||
+                                  (item.admin && userInfo?.role === "admin") ? (
+                                    <Menu.Item key={item.name}>
+                                      {({ active }) => (
+                                        <Link
+                                          to={item.link}
+                                          className={classNames(
+                                            active ? "bg-gray-100" : "",
+                                            "block px-4 py-2 text-sm text-gray-700"
+                                          )}
+                                        >
+                                          {item.name}
+                                        </Link>
+                                      )}
+                                    </Menu.Item>
+                                  ) : null
+                                )}
                               </Menu.Items>
                             </Transition>
                           </Menu>
@@ -215,20 +222,21 @@ const Navbar = ({ children }) => {
                         </Disclosure.Button>
                       ))}
                     </div> */}
-                    <div className="border-t border-gray-700 pb-3 pt-4">
+                    <div className="border-t border-gray-700 pb-3 pt-4 bg-gray-200">
                       <div className="flex items-center px-5">
-                        <div className="flex-shrink-0">
+                        {/* <div className="flex-shrink-0">
                           <img
                             className="h-10 w-10 rounded-full"
                             src={user?.imageUrl}
                             alt=""
                           />
-                        </div>
-                        <div className="ml-3">
+                        </div> */}
+                        <div className="ml-1 w-48">
                           <div className="text-base font-medium leading-none text-gray-600">
-                            {user?.name}
+                            {/* {user?.name} */}
+                            Email :-
                           </div>
-                          <div className="text-sm font-medium leading-none text-gray-400">
+                          <div className="text-sm font-medium leading-none text-gray-600 truncate">
                             {userInfo?.email}
                           </div>
                         </div>
@@ -251,17 +259,35 @@ const Navbar = ({ children }) => {
                           </span>
                         )}
                       </div>
-                      <div className="mt-3 space-y-1 px-2">
+                      {/* <div className="mt-3 space-y-1 px-2">
                         {userNavigation.map((item) => (
-                          <Disclosure.Button
-                            key={item.name}
-                            as="a"
-                            href={item.link}
-                            className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-700 hover:text-white"
-                          >
-                            {item.name}
-                          </Disclosure.Button>
+                          // item[userInfo?.role] 
+                          <Link to={item.link}>
+                            <Disclosure.Button
+                              key={item.name}
+                              as="a"
+                              // href={item.link}
+                              className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-700 hover:text-white"
+                            >
+                              {item.name}
+                            </Disclosure.Button>
+                          </Link>
                         ))}
+                      </div> */}
+                      <div className="mt-3 space-y-1 px-2">
+                        {userNavigation.map((item) =>
+                          !item.admin ||
+                          (item.admin && userInfo?.role === "admin") ? (
+                            <Link key={item.name} to={item.link}>
+                              <Disclosure.Button
+                                as="a"
+                                className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-700 hover:text-white"
+                              >
+                                {item.name}
+                              </Disclosure.Button>
+                            </Link>
+                          ) : null
+                        )}
                       </div>
                     </div>
                   </Disclosure.Panel>

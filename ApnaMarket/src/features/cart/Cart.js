@@ -3,7 +3,10 @@ import toast from "react-hot-toast";
 import { InfinitySpin } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { discountedPrice } from "../../app/constants";
+import {
+  discountedPrice,
+  formatToIndianNumberingSystem,
+} from "../../app/constants";
 import Modal from "../common/Modal";
 import {
   deleteItemFromCartAsync,
@@ -100,7 +103,10 @@ export default function Cart() {
                                 </a>
                               </h3>
                               <p className="ml-4">
-                                $ {discountedPrice(item?.product)}
+                                ₹{" "}
+                                {formatToIndianNumberingSystem(
+                                  discountedPrice(item?.product)
+                                )}
                               </p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">
@@ -166,7 +172,7 @@ export default function Cart() {
             <div className="border-t   border-gray-200 px-4 py-6 sm:px-6">
               <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                 <p>Subtotal</p>
-                <p>$ {totalAmount} </p>
+                <p>₹ {formatToIndianNumberingSystem(totalAmount)} </p>
               </div>
               <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                 <p>Total Item's in Cart</p>

@@ -13,7 +13,10 @@ import { InfinitySpin } from "react-loader-spinner";
 import { createOrderAsync, selectCurrentOrder } from "../order/OrderSlice";
 import { selectUserInfo, updateUserAsync } from "../user/UserSlice";
 import toast from "react-hot-toast";
-import { discountedPrice } from "../../app/constants";
+import {
+  discountedPrice,
+  formatToIndianNumberingSystem,
+} from "../../app/constants";
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -418,7 +421,12 @@ function Checkout() {
                                     {item?.product?.title}
                                   </a>
                                 </h3>
-                                <p className="ml-4">$ {item?.product?.price}</p>
+                                <p className="ml-4">
+                                  ₹{" "}
+                                  {formatToIndianNumberingSystem(
+                                    item?.product?.price
+                                  )}
+                                </p>
                               </div>
                               <p className="mt-1 text-sm text-gray-500">
                                 {item?.product?.brand}
@@ -470,7 +478,7 @@ function Checkout() {
               <div className="border-t   border-gray-200 px-4 py-6 sm:px-6">
                 <div className="flex justify-between text-base font-medium text-gray-900">
                   <p>Subtotal</p>
-                  <p>$ {totalAmount}</p>
+                  <p>₹ {formatToIndianNumberingSystem(totalAmount)}</p>
                 </div>
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                   <p>Total Item's in Cart</p>

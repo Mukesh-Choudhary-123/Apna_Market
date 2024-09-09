@@ -82,12 +82,14 @@ const AdminOrders = () => {
     dispatch(fetchAllOrdersAsync({ sort, pagination }));
   }, [dispatch, page, sort]);
 
+  console.log(orders);
+
   return orders ? (
     <div className="overflow-x-auto ">
       <div className=" min-w-screen min-h-screen  bg-gray-100 flex items-center justify-center  font-sans overflow-hidden">
-        <div className="w-full ">
+        <div className=" w-full lg:w-auto px-4">
           <div className="bg-white shadow-md  overflow-x-auto rounded my-6">
-            <table className="min-w-max w-full  table-auto ">
+            <table className=" overflow-x-scroll  table-auto ">
               <thead>
                 <tr className="bg-gray-200  text-gray-600 uppercase text-sm leading-normal">
                   <th
@@ -106,56 +108,74 @@ const AdminOrders = () => {
                     )}
                   </th>
                   <th className="py-3 px-6 text-left">Items</th>
-                  <th className="py-3  text-left">Quantity</th>
+                  {/* <th className="py-3  text-left">Quantity</th> */}
                   <th className="py-3 px-6 text-center">Total Amount</th>
                   <th className="py-3 px-6 text-center">Shipping Address</th>
-                  <th className="py-3 px-6 text-center">Status</th>
+                  <th className="py-3 px-6 text-center">Payment Status</th>
+                  <th className="py-3 px-6 text-center">Payment Method</th>
+                  <th className="py-3 px-6 text-center">Order Status</th>
+                  <th
+                    className="py-3 px-6 text-left cursor-pointer"
+                    onClick={(e) =>
+                      handleSort({
+                        // sortOption: sortId,
+                        sort: "createdAt",
+                        order: sort?._order === "asc" ? "desc" : "asc",
+                      })
+                    }
+                  >
+                    Order Time{"  "}
+                    {sort._sort === "createdAt" ? (
+                      <ArrowDownIcon className="h-4 w-4 inline"></ArrowDownIcon>
+                    ) : (
+                      <ArrowUpIcon className="h-4 w-4 inline"></ArrowUpIcon>
+                    )}
+                  </th>
+                  <th className="py-3 px-6 text-center">Last Update</th>
+
                   <th className="py-3 px-6 text-center">Actions</th>
                 </tr>
               </thead>
 
               <tbody className="text-gray-600 text-sm font-light">
                 {orders?.map((order) => (
-                  <tr className="border-b border-gray-200 hover:bg-gray-100">
+                  <tr
+                    className="border-b border-gray-200 hover:bg-gray-100"
+                    key={order.id}
+                  >
                     {/* Orders Id */}
-                    <td className="py-3 px-6 text-left whitespace-nowrap">
-                      <div className="flex items-center">
+                    <td className="py-3  text-left whitespace-nowrap align-middle">
+                      <div className="flex items-center h-full">
                         <div className="mr-2"></div>
-                        <span className="font-medium">#{order.id}</span>
+                        <span className="font-medium ">#{order?.id}</span>
                       </div>
                     </td>
 
                     {/* item title / item thumbnail / price*/}
-                    <td className="py-3 px-6 text-left">
+                    <td className="py-3  text-center">
                       {order?.items.map((item) => (
                         <>
-                          <div className="ml-6 ">
+                          <div className="ml-6 border-black border">
                             <img
-                              className="w-20 h-20 "
-                              src={item.product.thumbnail}
+                              className="w-20 h-20"
+                              src={item?.product?.thumbnail}
                             />
-                          </div>
-                          <div className="text-black mt-2 mb-2">
-                            {item.product.title} ~ $
-                            {discountedPrice(item.product)}
+                            {item?.product?.title}
+                            <div className="text-black mt-2 mb-2">
+                              <span className="text-center font-semibold">
+                                Rs.{" "}
+                              </span>
+                              {discountedPrice(item?.product)}
+                            </div>
                           </div>
                         </>
-                      ))}
-                    </td>
-
-                    {/* / item quantity */}
-                    <td className="py-3 px-6 text-left">
-                      {order?.items.map((item) => (
-                        <div className="flex items-center">
-                          <span>{item.quantity}</span>
-                        </div>
                       ))}
                     </td>
 
                     {/* orders totalAmount */}
                     <td className="py-3 px-6 text-center">
                       <div className="flex items-center justify-center">
-                        ${order.totalAmount}
+                        Rs.{order.totalAmount}
                       </div>
                     </td>
 
@@ -193,6 +213,35 @@ const AdminOrders = () => {
                       </div>
                     </td>
 
+                    {/* Payment status */}
+                    <td className="py-3  text-center">
+                      {order.id === editableOrderId ? (
+                        <select
+                          onChange={(e) => handleUpdate(e, order)}
+                          className="block mt-5 w-full rounded-md border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[rgba(223,27,51,255)] sm:max-w-xs sm:text-sm sm:leading-6"
+                        >
+                          <option> select status </option>
+                          <option value="pending">Pending</option>
+                          <option value="dispatched">Dispatched</option>
+                        </select>
+                      ) : (
+                        <span
+                          className={`${chooseColor(
+                            order.status
+                          )} py-1 px-3 rounded-full text-xs`}
+                        >
+                          {order.status}
+                        </span>
+                      )}
+                    </td>
+
+                    {/* payment method */}
+                    <td className="py-3  text-center">
+                      <div className="flex items-center justify-center">
+                        {order?.paymentMethod}
+                      </div>
+                    </td>
+
                     {/* orders status */}
                     <td className="py-3  text-center">
                       {order.id === editableOrderId ? (
@@ -215,6 +264,20 @@ const AdminOrders = () => {
                           {order.status}
                         </span>
                       )}
+                    </td>
+
+                    {/* order createdAt */}
+                    <td className="py-3  text-center">
+                      <div className="flex items-center justify-center">
+                        {new Date(order?.createdAt).toLocaleString()}
+                      </div>
+                    </td>
+
+                    {/* order updatedAt */}
+                    <td className="py-3  text-center">
+                      <div className="flex items-center justify-center">
+                        {new Date(order?.updatedAt).toLocaleString()}
+                      </div>
                     </td>
 
                     {/* action */}

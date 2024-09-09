@@ -52,12 +52,14 @@ export const resetPasswordAsync = createAsyncThunk(
 export const loginUserAsync = createAsyncThunk(
   "users/loginUser",
   async (loginInfo, { rejectWithValue }) => {
-    try {
-      const response = await loginUser(loginInfo);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return rejectWithValue(error);
+    if (loginInfo) {
+      try {
+        const response = await loginUser(loginInfo);
+        return response.data;
+      } catch (error) {
+        console.log({ error });
+        return rejectWithValue(error);
+      }
     }
   }
 );
@@ -159,6 +161,7 @@ export const selectUserChecked = (state) => state.auth.userChecked;
 export const selectMailSents = (state) => state.auth.mailSent;
 export const selectPasswordReset = (state) => state.auth.passwordReset;
 export const selectResetPasswordRequestStatus = (state) => state.auth.status;
+export const selectLoginUserStatus = (state) => state.auth.status;
 
 export const selectCount = (state) => state.counter;
 

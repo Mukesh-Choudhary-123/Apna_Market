@@ -11,6 +11,7 @@ import { InfinitySpin } from "react-loader-spinner";
 import Footer from "../../common/Footer";
 import Lottie from "lottie-react";
 import AnimationData from "./NoOrderAnimation.json";
+import { formatToIndianNumberingSystem } from "../../../app/constants";
 
 export default function UserOrder() {
   const dispatch = useDispatch();
@@ -89,7 +90,10 @@ export default function UserOrder() {
                                       </a>
                                     </h3>
                                     <p className="ml-4 text-xs lg:text-xl md:text-sm">
-                                      ${item.product.price}
+                                      ₹{" "}
+                                      {formatToIndianNumberingSystem(
+                                        item?.product?.price
+                                      )}
                                     </p>
                                   </div>
                                   <p className="mt-1 text-sm text-gray-500">
@@ -118,7 +122,10 @@ export default function UserOrder() {
                   <div className="border-t   border-gray-200 px-4 py-6 sm:px-6">
                     <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                       <p>Subtotal</p>
-                      <p>$ {order?.totalAmount}</p>
+                      {/* <p>₹ {order?.totalAmount}</p> */}
+                      <p>
+                        ₹ {formatToIndianNumberingSystem(order?.totalAmount)}
+                      </p>
                     </div>
                     <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                       <p>Total Item's in Cart</p>
