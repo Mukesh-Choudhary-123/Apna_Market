@@ -115,5 +115,25 @@ If No Orders 😫
 
 ![Screenshot_10-9-2024_22229_apnamarket-backend onrender com](https://github.com/user-attachments/assets/8656806c-5123-4e8e-838c-9dd26a14113b)
 
+# .................................Phone View................................
+
+
+![index phone ](https://github.com/user-attachments/assets/b20b2d8a-92a5-4c6d-98aa-d7d094edd5ac)
+![login phone ](https://github.com/user-attachments/assets/75ba0b47-d5f1-466c-9c27-a8ed06eb74f5)
+![home phone ](https://github.com/user-attachments/assets/d85b9d97-4378-4fcb-b2cb-8dea89d3de6a)
+![dp phone2 ](https://github.com/user-attachments/assets/1d12e7d4-719b-46e3-872e-bbe691d1c135)
+![DP phone](https://github.com/user-attachments/assets/d9a8fabc-f700-4097-a837-fe947b6ae5ae)
+![cart phone](https://github.com/user-attachments/assets/c5966614-a49e-4efc-803d-cce0897aaa46)
+![Checkout phone](https://github.com/user-attachments/assets/23eaf5c0-aab4-4685-9fc6-644c82460134)
+![navigation bar phone ](https://github.com/user-attachments/assets/50da57e0-03e8-48e9-9898-9a8bfbdbd46d)
+![my profile phone 2](https://github.com/user-attachments/assets/818dc083-286f-4d76-aebb-d8fe94025300)
+![my profile phone ](https://github.com/user-attachments/assets/343c9b05-5c78-41b0-95b7-c41b9163f5a8)
+![my orders phone ](https://github.com/user-attachments/assets/37ef9e29-58fa-4f92-8c26-45cfa61f51c3)
+
+
+
+
+
+
 
 
